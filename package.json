@@ -1,0 +1,19 @@
+{
+  "name": "imgix-api-js",
+  "version": "0.1.0",
+  "description": "A Javascript library that wraps the imgix public API",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "keywords": [
+    "imgix",
+    "api",
+    "javascript"
+  ],
+  "author": "Sherwin Heydarbeygi (https://github.com/sherwinski)",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  }
+}
