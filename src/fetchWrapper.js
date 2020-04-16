@@ -23,7 +23,7 @@ function ApiError(message, data, status) {
 }
 
 // A wrapper around fetch()
-const fetchResource = (path = '', userOptions = {}) => {
+const fetchWrapper = (path = '', userOptions = {}) => {
     const defaultOptions = {
         method: 'get'
     };
@@ -42,7 +42,7 @@ const fetchResource = (path = '', userOptions = {}) => {
     };
 
     const apiVersion = userOptions.version;
-    const url = `${ API_URL }/${ path }`;
+    const url = `${ API_URL }/v${apiVersion}/${ path }`;
 
     /* TODO
     /* Test with uploading API
@@ -89,4 +89,4 @@ const fetchResource = (path = '', userOptions = {}) => {
         });
 };
 
-exports.fetchResource = fetchResource;
+module.exports = fetchWrapper;

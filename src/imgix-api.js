@@ -1,17 +1,17 @@
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {
-        define('ImgixAPI', ['exports', './fetchResource'], factory);
+        define('ImgixAPI', ['exports', './fetchWrapper'], factory);
     } else if (typeof exports !== 'undefined') {
-        module.exports = factory(exports, require('./fetchResource'));
+        module.exports = factory(exports, require('./fetchWrapper'));
     } else {
         var mod = {
         exports: {}
         };
-        global.ImgixAPI = factory(mod.exports, global.fetchResource);
+        global.ImgixAPI = factory(mod.exports, global.fetchWrapper);
     }
-})(this, function (exports, _fetchResource) {
+})(this, function (exports, fetchWrapper) {
     'use strict';
-    var fetch = _fetchResource;
+    var fetch = fetchWrapper;
 
     // default ImgixAPI settings passed in during instantiation
     var DEFAULTS = {
@@ -32,8 +32,11 @@
         return ImgixAPI;
     })();
 
-    ImgixAPI.prototype.request = function(path, options) {
-        return fetch.fetchResource(path, options)
+    ImgixAPI.prototype.request = function(path, options = {}) {
+        return fetch(path, {
+            ...options,
+            version: this.settings.version
+        });
     };
 
     return ImgixAPI;
