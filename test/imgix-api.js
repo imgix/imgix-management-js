@@ -1,4 +1,5 @@
 var ImgixAPI = require('../src/imgix-api');
+
 var assert = require('assert');
 
 describe('The imgix API class', function describeSuite() {
@@ -27,16 +28,5 @@ describe('ImgixAPI.prototype.request', function describeSuite() {
 
     it('exposes a method request() on the object prototype', function testSpec() {
         assert(typeof ix.request === 'function');
-    });
-
-    it('emits a custom ApiError on failed request', function testSpec() {
-        // an empty request will fail
-        ix.request()
-        .catch(error => {
-            assert(error.response);
-            assert(error.message);
-            assert(error.status);
-            assert(error.toString);
-        });
     });
 });
