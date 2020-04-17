@@ -42,7 +42,7 @@ const fetchWrapper = (path = '', userOptions = {}) => {
     };
 
     const apiVersion = userOptions.version;
-    const url = `${ API_URL }/v${apiVersion}/${ path }`;
+    const url = `${ API_URL }/v${ apiVersion }/${ path }`;
 
     /* TODO
     /* Test with uploading API
@@ -72,13 +72,6 @@ const fetchWrapper = (path = '', userOptions = {}) => {
             }
 
             return response.json();
-        })
-        .then(parsedResponse => {
-            if (response.status < 200 || response.status >= 300) {
-                throw parsedResponse;
-            }
-
-            return JSON.stringify(parsedResponse, null, 2);
         })
         .catch(error => {
             if (response) {
