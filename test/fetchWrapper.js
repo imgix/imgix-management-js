@@ -1,12 +1,12 @@
-var fetch = require('../src/fetchWrapper');
-var assert = require('assert');
+const fetch = require('../src/fetchWrapper');
+const assert = require('assert');
 
-describe('fetchWrapper.js', function describeSuite() {
-    it('exports a function', function testSpec() {
+describe('fetchWrapper.js', () => {
+    it('exports a function', () => {
         assert(typeof fetch === 'function');
     });
 
-    it('emits a custom ApiError on failure', function testSpec() {
+    it('emits a custom ApiError on failure', () => {
         // an empty request will fail
         fetch()
         .catch(error => {

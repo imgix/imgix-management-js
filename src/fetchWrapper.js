@@ -17,9 +17,7 @@ function ApiError(message, data, status) {
     this.message = message;
     this.status = status;
 
-    this.toString = function () {
-        return `${ this.message }\nResponse:\n${ isObject ? JSON.stringify(this.response, null, 2) : this.response }`;
-    };
+    this.toString = () => `${ this.message }\nResponse:\n${ isObject ? JSON.stringify(this.response, null, 2) : this.response }`;
 }
 
 // A wrapper around fetch()

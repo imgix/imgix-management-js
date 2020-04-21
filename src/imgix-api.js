@@ -5,20 +5,20 @@
         module.exports = factory(exports, require('./fetchWrapper'));
     } else {
         var mod = {
-        exports: {}
+            exports: {}
         };
         global.ImgixAPI = factory(mod.exports, global.fetchWrapper);
     }
 })(this, function (exports, fetchWrapper) {
     'use strict';
-    var fetch = fetchWrapper;
+    const fetch = fetchWrapper;
 
     // default ImgixAPI settings passed in during instantiation
-    var DEFAULTS = {
+    const DEFAULTS = {
         version: 1
     };
 
-    var ImgixAPI = (function() {
+    const ImgixAPI = (() => {
         function ImgixAPI(opts = {}) {
             this.settings = {};
 

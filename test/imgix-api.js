@@ -1,32 +1,31 @@
-var ImgixAPI = require('../src/imgix-api');
+const ImgixAPI = require('../src/imgix-api');
+const assert = require('assert');
 
-var assert = require('assert');
-
-describe('The imgix API class', function describeSuite() {
-    it('creates an instance of the class', function testSpec() {
+describe('The imgix API class', () => {
+    it('creates an instance of the class', () => {
         var ix = new ImgixAPI();
         assert(ix);
     });
 
-    it('is created with a default version value', function testSpec() {
+    it('is created with a default version value', () => {
         var ix = new ImgixAPI();
         assert(ix.settings.version);
     });
 
-    it('allows the version value to be set', function testSpec() {
+    it('allows the version value to be set', () => {
         var ix = new ImgixAPI({version: 2});
         assert(ix.settings.version == 2);
     });
 });
 
-describe('ImgixAPI.prototype.request', function describeSuite() {
+describe('ImgixAPI.prototype.request', () => {
     var ix;
 
     beforeEach(function setupClient() {
         ix = new ImgixAPI();
     });
 
-    it('exposes a method request() on the object prototype', function testSpec() {
+    it('exposes a method request() on the object prototype', () => {
         assert(typeof ix.request === 'function');
     });
 });
