@@ -32,11 +32,12 @@
         return ImgixAPI;
     })();
 
-    ImgixAPI.prototype.request = (path, options = {}) =>
-        fetch(path, {
+    ImgixAPI.prototype.request = function(path, options = {}) {
+        return fetch(path, {
             ...options,
             version: this.settings.version
         });
+    };
 
     return ImgixAPI;
 
