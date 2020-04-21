@@ -4,7 +4,10 @@
   "description": "A Javascript library that wraps the imgix public API",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "test:browser": "open './test/browser/test.html'",
+    "test:all": "npm test && npm run test:browser",
+    "test:watch": "mocha --watch"
   },
   "keywords": [
     "imgix",
@@ -17,6 +20,7 @@
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "mocha": "^7.1.1"
   }
 }
