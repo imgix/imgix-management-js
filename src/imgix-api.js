@@ -5,13 +5,21 @@
         module.exports = factory(exports, require('./fetchWrapper'));
     } else {
         var mod = {
-            exports: {}
+            exports: {
+                window
+            }
         };
         global.ImgixAPI = factory(mod.exports, global.fetchWrapper);
     }
 })(this, function (exports, fetchWrapper) {
     'use strict';
-    const fetch = fetchWrapper;
+    let fetch;
+
+    if (exports.window !== undefined) {
+        fetch = window.fetch;
+    } else {
+        fetch = fetchWrapper;
+    }
 
     // default ImgixAPI settings passed in during instantiation
     const DEFAULTS = {

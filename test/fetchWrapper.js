@@ -3,7 +3,7 @@ const assert = require('assert');
 
 describe('fetchWrapper.js', () => {
     it('exports a function', () => {
-        assert(typeof fetch === 'function');
+        assert.equal(typeof fetch, 'function');
     });
 
     it('emits a custom ApiError on failure', () => {
