@@ -1,0 +1,7 @@
+const API_KEY = 'TEST-KEY';
+const API_VERSION_OVERRIDE = 2;
+
+module.exports = {
+    API_KEY: API_KEY,
+    API_VERSION_OVERRIDE: API_VERSION_OVERRIDE
+};
