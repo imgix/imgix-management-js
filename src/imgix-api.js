@@ -44,11 +44,11 @@
 
     ImgixAPI.prototype.request = function(path, options = {}) {
         return fetch(path, {
+            ...options,
             version: this.settings.version,
             headers: {
                 'Authorization': `apikey ${this.settings.apiKey}`,
-            },
-            ...options,
+            }
         });
     };
 
