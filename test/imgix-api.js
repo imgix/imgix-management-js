@@ -5,6 +5,7 @@ const assert = require('assert');
 
 // import testing constants
 const API_KEY = require('./constants').API_KEY;
+const INVALID_API_KEY = require('./constants').INVALID_API_KEY;
 const API_VERSION_OVERRIDE = require('./constants').API_VERSION_OVERRIDE;
 
 describe('The ImgixAPI class', () => {
@@ -24,12 +25,6 @@ describe('The ImgixAPI class', () => {
         assert(ix.settings.version);
     });
 
-    it('throws an error if instantiated without an API key', () => {
-        assert.throws(() => {
-            new ImgixAPI();
-        }, Error);
-    });
-
     it('respects the version number passed into the constructor', () => {
         let ix = new ImgixAPI({
             version: API_VERSION_OVERRIDE,
@@ -43,6 +38,20 @@ describe('The ImgixAPI class', () => {
             apiKey: API_KEY
         });
         assert.equal(ix.settings.apiKey, API_KEY);
+    });
+
+    it('throws an error if instantiated without an API key', () => {
+        assert.throws(() => {
+            new ImgixAPI();
+        }, Error);
+    });
+
+    it('throws an error if an API key does not adhere to the expected structure', () => {
+        assert.throws(() => {
+            new ImgixAPI({
+                apiKey: INVALID_API_KEY
+            });
+        }, Error);
     });
 
     it('fetch exists in the global namespace as window.fetch', () => {
