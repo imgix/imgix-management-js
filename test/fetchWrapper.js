@@ -9,11 +9,13 @@ describe('fetchWrapper.js', () => {
     it('emits a custom ApiError on failure', () => {
         // an empty request will fail
         fetch()
-        .catch(error => {
+        .then(error => {
+            console.log(error);
             assert(error.response);
             assert(error.message);
             assert(error.status);
             assert(error.toString);
-        });
+        })
+        .catch(() => {});
     });
 });
