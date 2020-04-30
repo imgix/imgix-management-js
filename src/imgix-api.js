@@ -16,6 +16,8 @@
     }
 })(this, function (exports, fetchWrapper, validators) {
     'use strict';
+    const API_URL = 'https://api.imgix.com/api';
+
     const { validateOpts } = validators;
 
     // Depending on loading environment, either use
@@ -42,15 +44,30 @@
         return ImgixAPI;
     })();
 
-    ImgixAPI.prototype.request = function(path, options = {}) {
-        return fetch(path, {
-            ...options,
-            version: this.settings.version,
+    ImgixAPI.prototype.request = function(path, userOptions = {}) {
+        const defaultOptions = {
+            method: 'get'
+        };
+
+        const defaultHeaders = {
+            'Content-Type': 'application/vnd.api+json',
+            'Authorization': `apikey ${this.settings.apiKey}`
+        };
+
+        const options = {
+            ...defaultOptions,
+            ...userOptions,
             headers: {
-                'Authorization': `apikey ${this.settings.apiKey}`,
-            }
-        });
+                ...userOptions.headers,
+                ...defaultHeaders,
+            },
+        };
+        const url = constructUrl(path, this.settings.version);
+
+        return fetch(url, options);
     };
+
+    const constructUrl = (path, version) => `${ API_URL }/v${ version }/${ path }`;
 
     return ImgixAPI;
 
