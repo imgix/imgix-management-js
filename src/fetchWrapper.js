@@ -1,5 +1,4 @@
 const fetch = require("node-fetch");
-const API_URL = 'https://api.imgix.com/api';
 
 // Custom API error to throw
 function ApiError(message, data, status) {
@@ -21,27 +20,7 @@ function ApiError(message, data, status) {
 }
 
 // A wrapper around fetch()
-const fetchWrapper = (path = '', userOptions = {}) => {
-    const defaultOptions = {
-        method: 'get'
-    };
-
-    const defaultHeaders = {
-        'Content-Type': 'application/vnd.api+json'
-    };
-
-    const options = {
-        ...defaultOptions,
-        ...userOptions,
-        headers: {
-        ...defaultHeaders,
-        ...userOptions.headers,
-        },
-    };
-
-    const apiVersion = userOptions.version;
-    const url = `${ API_URL }/v${ apiVersion }/${ path }`;
-
+const fetchWrapper = (url = '', options = {}) => {
     /* TODO
     /* Test with uploading API
         // Detect if we are uploading a file
