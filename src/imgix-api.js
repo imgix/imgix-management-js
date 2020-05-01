@@ -4,7 +4,7 @@
         define('ImgixAPI', ['exports', './fetchWrapper', './validators'], factory);
     } else if (typeof exports !== 'undefined') {
         // CommonJS
-        module.exports = factory(exports, require('./fetchWrapper'), require('./validators'));
+        module.exports = factory(exports, require('./fetchWrapper'), require('./validators'), require('./constants'));
     } else {
         // Browser globals
         var mod = {
@@ -14,10 +14,10 @@
         };
         global.ImgixAPI = factory(mod.exports, global.fetchWrapper, global.validators);
     }
-})(this, function (exports, fetchWrapper, validators) {
+})(this, function (exports, fetchWrapper, validators, constants) {
     'use strict';
     const API_URL = 'https://api.imgix.com/api';
-
+    const USER_AGENT = `imgix-management-js/${constants.VERSION}`;
     const { validateOpts } = validators;
 
     // Depending on loading environment, either use
@@ -51,7 +51,8 @@
 
         const defaultHeaders = {
             'Content-Type': 'application/vnd.api+json',
-            'Authorization': `apikey ${this.settings.apiKey}`
+            'Authorization': `apikey ${this.settings.apiKey}`,
+            'User-Agent': USER_AGENT
         };
 
         const options = {
