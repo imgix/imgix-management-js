@@ -1,7 +1,7 @@
-const fetch = require("node-fetch");
+const nodeFetch = require("node-fetch");
 
 // Custom API error to throw
-function ApiError(message, data, status) {
+function APIError(message, data, status) {
     let response = null;
     let isObject = false;
 
@@ -19,22 +19,11 @@ function ApiError(message, data, status) {
     this.toString = () => `${ this.message }\nResponse:\n${ isObject ? JSON.stringify(this.response, null, 2) : this.response }`;
 }
 
-// A wrapper around fetch()
-const fetchWrapper = (url = '', options = {}) => {
-    /* TODO
-    /* Test with uploading API
-        // Detect if we are uploading a file
-        const isFile = null //options.body instanceof File;
-
-        // Stringify JSON data if body is not a file
-        if (options.body && typeof options.body === 'object' && !isFile) {
-            options.body = JSON.stringify(options.body);
-        }
-    */
-
+// A wrapper around nodeFetch()
+function fetch(url = '', options = {}) {
     let response = null;
 
-    return fetch(url, options)
+    return nodeFetch(url, options)
         .then(responseObject => {
             response = responseObject;
 
@@ -52,11 +41,13 @@ const fetchWrapper = (url = '', options = {}) => {
         })
         .catch(error => {
             if (response) {
-                throw new ApiError(`Request failed with status ${ response.status }.`, error, response.status);
+                throw new APIError(`Request failed with status ${ response.status }.`, error, response.status);
             } else {
-                throw new ApiError(error.toString(), null, 'REQUEST_FAILED');
+                throw new APIError(error.toString(), null, 'REQUEST_FAILED');
             }
         });
 };
 
-module.exports = fetchWrapper;
+module.exports = {
+    fetch: fetch
+}
