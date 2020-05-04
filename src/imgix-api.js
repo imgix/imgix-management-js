@@ -16,17 +16,17 @@
     }
 })(this, function (exports, fetchWrapper, validators, constants) {
     'use strict';
-    const API_URL = 'https://api.imgix.com/api';
-    const USER_AGENT = `imgix-management-js/${constants.VERSION}`;
+    const API_URL = constants.API_URL;
+    const USER_AGENT = `imgix-management-js/${constants.PACKAGE_VERSION}`;
     const { validateOpts } = validators;
 
     // Depending on loading environment, either use
     // window.fetch or node-fetch to complete requests
-    let fetch;
-    if (exports.window !== undefined) {
-        fetch = window.fetch;
+    let env;
+    if (exports.window) {
+        env = window;
     } else {
-        fetch = fetchWrapper;
+        env = fetchWrapper;
     }
 
     // default ImgixAPI settings passed in during instantiation
@@ -65,7 +65,7 @@
         };
         const url = constructUrl(path, this.settings.version);
 
-        return fetch(url, options);
+        return env.fetch(url, options);
     };
 
     const constructUrl = (path, version) => `${ API_URL }/v${ version }/${ path }`;
