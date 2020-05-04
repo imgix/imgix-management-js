@@ -1,16 +1,15 @@
-const fetch = require('../src/fetchWrapper');
+const { fetch } = require('../src/fetchWrapper');
 const assert = require('assert');
 
-describe('fetchWrapper.js', () => {
-    it('exports a function', () => {
+describe('fetchWrapper', () => {
+    it('exports fetch(), a wrapper around node-fetch', () => {
         assert.equal(typeof fetch, 'function');
     });
 
-    it('emits a custom ApiError on failure', () => {
+    it('emits a custom APIError on failure', () => {
         // an empty request will fail
         fetch()
         .then(error => {
-            console.log(error);
             assert(error.response);
             assert(error.message);
             assert(error.status);
