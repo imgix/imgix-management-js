@@ -1,5 +1,5 @@
 const ImgixAPI = require('../src/imgix-api');
-const fetchWrapper = require('../src/fetchWrapper');
+const fetchWrapper = require('../src/fetch-wrapper');
 
 //import testing dependencies
 const assert = require('assert');
@@ -85,8 +85,9 @@ describe('ImgixAPI.prototype.request', () => {
     });
 
     it('constructs the full API URL prior to completing request', () => {
-        const stubFetch = sinon.stub(fetchWrapper, 'fetch');
-        ix.request(ASSETS_ENDPOINT);
+        const stubFetch = sinon.stub(fetchWrapper, 'fetch').returns(Promise.resolve());
+        ix.request(ASSETS_ENDPOINT)
+        .catch(resp => resp);
 
         const url = stubFetch.getCalls(0)[0].firstArg;
         assert(stubFetch.callCount == 1);
@@ -95,8 +96,9 @@ describe('ImgixAPI.prototype.request', () => {
     });
 
     it('passes all default headers', () => {
-        const stubFetch = sinon.stub(fetchWrapper, 'fetch');
-        ix.request(ASSETS_ENDPOINT);
+        const stubFetch = sinon.stub(fetchWrapper, 'fetch').returns(Promise.resolve());
+        ix.request(ASSETS_ENDPOINT)
+        .catch(resp => resp);
 
         const options = stubFetch.getCalls(0)[0].lastArg;
         assert(stubFetch.callCount == 1);
@@ -111,12 +113,14 @@ describe('ImgixAPI.prototype.request', () => {
     });
 
     it('respects an overriding request method', () => {
-        const stubFetch = sinon.stub(fetchWrapper, 'fetch');
+        const stubFetch = sinon.stub(fetchWrapper, 'fetch').returns(Promise.resolve());
         const POST = 'post';
         const customOptions = {
             method: POST
-        }
-        ix.request(ASSETS_ENDPOINT, customOptions);
+        };
+
+        ix.request(ASSETS_ENDPOINT, customOptions)
+        .catch(resp => resp);
 
         const options = stubFetch.getCalls(0)[0].lastArg;
         assert.equal(options.method, POST);
