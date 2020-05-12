@@ -16,8 +16,7 @@
     }
 })(this, function (exports, fetchWrapper, validators, constants, APIError) {
     'use strict';
-    const API_URL = constants.API_URL;
-    const USER_AGENT = `imgix-management-js/${constants.PACKAGE_VERSION}`;
+    const { API_URL, USER_AGENT } = constants;
     const { validateOpts, validateBody, isBuffer } = validators;
 
     // default ImgixAPI settings passed in during instantiation
