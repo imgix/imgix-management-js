@@ -30,7 +30,7 @@ describe('Validators', () => {
         let body;
 
         it('throws an error if the request body is neither type JSON nor Buffer', () => {
-            body = '123';
+            body = null;
             assert.throws(() => validators.validateBody(body), Error);
         });
     });
