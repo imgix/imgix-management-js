@@ -6,12 +6,8 @@ const assert = require('assert');
 const sinon = require('sinon');
 
 // import testing constants
-const API_KEY = require('./constants').API_KEY;
-const INVALID_API_KEY = require('./constants').INVALID_API_KEY;
-const API_VERSION_OVERRIDE = require('./constants').API_VERSION_OVERRIDE;
-const ASSETS_ENDPOINT = require('./constants').ASSETS_ENDPOINT;
-const ASSETS_URL = require('./constants').ASSETS_URL;
-const PACKAGE_VERSION = require('./constants').PACKAGE_VERSION;
+const { API_KEY, AUTHORIZATION_HEADER, INVALID_API_KEY, API_VERSION_OVERRIDE, ASSETS_ENDPOINT, ASSETS_URL, BODY_BUFFER, BODY_JSON, INVALID_BODY, POST, CONTENT_TYPE_JSON, CONTENT_TYPE_OCTET } = require('./constants');
+const {  USER_AGENT } = require('../src/constants');
 
 describe('The ImgixAPI class', () => {
     let ix, version;
@@ -103,18 +99,17 @@ describe('ImgixAPI.prototype.request', () => {
         const options = stubFetch.getCalls(0)[0].lastArg;
         assert(stubFetch.callCount == 1);
         assert.equal(typeof options, 'object');
-        assert(options.headers);
-
         const headers = options.headers;
-        assert.equal(headers['Content-Type'], 'application/vnd.api+json');
-        assert.equal(headers['Authorization'], `apikey ${API_KEY}`);
-        assert.equal(headers['User-Agent'], `imgix-management-js/${PACKAGE_VERSION}`);
+        assert(headers);
+
+        assert.equal(headers['Content-Type'], CONTENT_TYPE_JSON);
+        assert.equal(headers['Authorization'], AUTHORIZATION_HEADER);
+        assert.equal(headers['User-Agent'], USER_AGENT);
         stubFetch.restore();
     });
 
     it('respects an overriding request method', () => {
         const stubFetch = sinon.stub(fetchWrapper, 'fetch').returns(Promise.resolve());
-        const POST = 'post';
         const customOptions = {
             method: POST
         };
@@ -124,6 +119,58 @@ describe('ImgixAPI.prototype.request', () => {
 
         const options = stubFetch.getCalls(0)[0].lastArg;
         assert.equal(options.method, POST);
+        stubFetch.restore();
+    });
+
+    it('changes the Content-Type when a Buffer is passed to body', () => {
+        const stubFetch = sinon.stub(fetchWrapper, 'fetch').returns(Promise.resolve());
+        const customOptions = {
+            method: POST,
+            body: BODY_BUFFER
+        };
+
+        ix.request(ASSETS_ENDPOINT, customOptions)
+        .catch(resp => resp);
+
+        const options = stubFetch.getCalls(0)[0].lastArg;
+        assert(stubFetch.callCount == 1);
+        assert.equal(typeof options, 'object');
+        const headers = options.headers;
+        assert(headers);
+
+        assert.equal(headers['Content-Type'], CONTENT_TYPE_OCTET);
+        stubFetch.restore();
+    });
+
+    it('does not change the Content-Type when a JSON blob is passed to body', () => {
+        const stubFetch = sinon.stub(fetchWrapper, 'fetch').returns(Promise.resolve());
+        const customOptions = {
+            method: POST,
+            body: BODY_JSON
+        };
+
+        ix.request(ASSETS_ENDPOINT, customOptions)
+        .catch(resp => resp);
+
+        const options = stubFetch.getCalls(0)[0].lastArg;
+        assert(stubFetch.callCount == 1);
+        assert.equal(typeof options, 'object');
+        const headers = options.headers;
+        assert(headers);
+
+        assert.equal(headers['Content-Type'], CONTENT_TYPE_JSON);
+        stubFetch.restore();
+    });
+
+    it('throws an error when body is not a valid type', () => {
+        const stubFetch = sinon.stub(fetchWrapper, 'fetch').returns(Promise.resolve());
+        const customOptions = {
+            method: POST,
+            body: INVALID_BODY
+        };
+
+        assert.throws(() => ix.request(ASSETS_ENDPOINT, customOptions).catch(resp => resp), Error);
+        assert(stubFetch.callCount == 0);
         stubFetch.restore();
     });
 });
