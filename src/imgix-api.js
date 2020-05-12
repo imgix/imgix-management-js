@@ -18,7 +18,7 @@
     'use strict';
     const API_URL = constants.API_URL;
     const USER_AGENT = `imgix-management-js/${constants.PACKAGE_VERSION}`;
-    const { validateOpts } = validators;
+    const { validateOpts, validateBody, isBuffer } = validators;
 
     // default ImgixAPI settings passed in during instantiation
     const DEFAULTS = {
@@ -45,6 +45,16 @@
             'Authorization': `apikey ${this.settings.apiKey}`,
             'User-Agent': USER_AGENT
         };
+
+        // change the Content-Type if the request body is passed a valid uploadable file type
+        let body = userOptions.body;
+        if (body) {
+            validateBody(body);
+
+            if (isBuffer(body)) {
+                defaultHeaders['Content-Type'] = 'application/octet-stream';
+            }
+        }
 
         const options = {
             ...defaultOptions,
