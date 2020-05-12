@@ -18,7 +18,8 @@ function validateOpts(options) {
 function validateBody(body) {
     const invalidBodyError = new TypeError('The request body must be of type JSON or Buffer');
 
-    assert(!(isJSON(body) || isBuffer(body)), invalidBodyError);
+    const isValid = body && (isJSON(body) || isBuffer(body));
+    assert(isValid, invalidBodyError);
 };
 
 function isBuffer(body) {
