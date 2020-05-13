@@ -69,20 +69,23 @@
         let response = null;
 
         return fetchWrapper.fetch(url, options)
-        .then(response => {
-            // HTTP unauthorized
-            if (response.status === 401) {
-                // Handle unauthorized requests
-            }
+        .then(responseObject => {
+            response = responseObject;
 
-            // Check for error HTTP error codes
             if (response.status < 200 || response.status >= 300) {
                 return response.text();
             } else {
                 return response.json();
             }
         })
-        .catch(error => {
+        .then(parsedResponse => {
+            if (response.status < 200 || response.status >= 300) {
+                throw parsedResponse;
+            }
+
+            return parsedResponse;
+        })
+        .catch(error => {            
             if (response) {
                 throw new APIError(`Request failed with status ${ response.status }.`, error, response.status);
             } else {
