@@ -76,14 +76,15 @@ describe('ImgixAPI.prototype.request', () => {
     });
 
     it('calling request() returns a Promise as a response', () => {
-        const promise = ix.request(ASSETS_ENDPOINT);
+        const promise = ix.request(ASSETS_ENDPOINT)
+        .catch(error => error);
         assert.equal(typeof promise.then, 'function');
     });
 
     it('constructs the full API URL prior to completing request', () => {
         const stubFetch = sinon.stub(fetchWrapper, 'fetch').returns(Promise.resolve());
         ix.request(ASSETS_ENDPOINT)
-        .catch(resp => resp);
+        .catch(error => error);
 
         const url = stubFetch.getCalls(0)[0].firstArg;
         assert(stubFetch.callCount == 1);
@@ -94,7 +95,7 @@ describe('ImgixAPI.prototype.request', () => {
     it('passes all default headers', () => {
         const stubFetch = sinon.stub(fetchWrapper, 'fetch').returns(Promise.resolve());
         ix.request(ASSETS_ENDPOINT)
-        .catch(resp => resp);
+        .catch(error => error);
 
         const options = stubFetch.getCalls(0)[0].lastArg;
         assert(stubFetch.callCount == 1);
@@ -115,7 +116,7 @@ describe('ImgixAPI.prototype.request', () => {
         };
 
         ix.request(ASSETS_ENDPOINT, customOptions)
-        .catch(resp => resp);
+        .catch(error => error);
 
         const options = stubFetch.getCalls(0)[0].lastArg;
         assert.equal(options.method, POST);
@@ -214,5 +215,38 @@ describe('ImgixAPI.prototype.request', () => {
         assert.throws(() => ix.request(ASSETS_ENDPOINT, customOptions), Error);
         assert(stubFetch.callCount == 0);
         stubFetch.restore();
+    });
+
+    it('returns a rejected Promise if a request error occurs', () => {
+        ix.request(ASSETS_ENDPOINT)
+        .catch(error => {
+            assert(error);
+            assert.equal(typeof error, 'object');
+            assert(error.response);
+            assert.equal(typeof error.response, 'object');
+            assert(error.message);
+            assert.equal(typeof error.message, 'string');
+            assert(error.status);
+            assert.equal(error.status, 401);
+            assert(error.toString);
+        });
+    });
+
+    it('returns a rejected Promise if an operational error occurs', () => {
+        const customOptions = {
+            body: JSON.stringify({ data: 'test' })
+        };
+
+        ix.request(ASSETS_ENDPOINT, customOptions)
+        .catch(error => {
+            assert(error);
+            assert.equal(typeof error, 'object');
+            assert(!error.response);
+            assert(error.message);
+            assert.equal(typeof error.message, 'string');
+            assert(error.status);
+            assert.equal(error.status, 'REQUEST_FAILED');
+            assert(error.toString);
+        });
     });
 });
