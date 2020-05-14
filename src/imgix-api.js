@@ -52,6 +52,8 @@
 
             if (isBuffer(body)) {
                 defaultHeaders['Content-Type'] = 'application/octet-stream';
+            } else if (typeof body == 'object') {
+                userOptions.body = JSON.stringify(body);
             }
         }
 
