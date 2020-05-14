@@ -6,7 +6,7 @@ const assert = require('assert');
 const sinon = require('sinon');
 
 // import testing constants
-const { API_KEY, AUTHORIZATION_HEADER, INVALID_API_KEY, API_VERSION_OVERRIDE, ASSETS_ENDPOINT, ASSETS_URL, BODY_BUFFER, BODY_JSON, INVALID_BODY, POST, CONTENT_TYPE_JSON, CONTENT_TYPE_OCTET } = require('./constants');
+const { API_KEY, AUTHORIZATION_HEADER, INVALID_API_KEY, API_VERSION_OVERRIDE, ASSETS_ENDPOINT, ASSETS_URL, BODY_BUFFER, BODY_JSON, BODY_JSON_STRING, INVALID_BODY, POST, CONTENT_TYPE_JSON, CONTENT_TYPE_OCTET } = require('./constants');
 const {  USER_AGENT } = require('../src/constants');
 
 describe('The ImgixAPI class', () => {
@@ -142,7 +142,49 @@ describe('ImgixAPI.prototype.request', () => {
         stubFetch.restore();
     });
 
-    it('does not change the Content-Type when a JSON blob is passed to body', () => {
+    it('does not modify a JSON string passed into body', () => {
+        const stubFetch = sinon.stub(fetchWrapper, 'fetch').returns(Promise.resolve());
+        const customOptions = {
+            method: POST,
+            body: BODY_JSON_STRING
+        };
+
+        ix.request(ASSETS_ENDPOINT, customOptions)
+        .catch(resp => resp);
+
+        const options = stubFetch.getCalls(0)[0].lastArg;
+        assert(stubFetch.callCount == 1);
+        assert(options);
+        assert.equal(typeof options, 'object');
+
+        const body = options.body;
+        assert.equal(typeof body, 'string');
+        assert.equal(body, BODY_JSON_STRING);
+        stubFetch.restore();
+    });
+
+    it('stringifies a JSON object passed into body', () => {
+        const stubFetch = sinon.stub(fetchWrapper, 'fetch').returns(Promise.resolve());
+        const customOptions = {
+            method: POST,
+            body: BODY_JSON
+        };
+
+        ix.request(ASSETS_ENDPOINT, customOptions)
+        .catch(resp => resp);
+
+        const options = stubFetch.getCalls(0)[0].lastArg;
+        assert(stubFetch.callCount == 1);
+        assert(options);
+        assert.equal(typeof options, 'object');
+
+        const body = options.body;
+        assert.equal(typeof body, 'string');
+        assert.equal(body, BODY_JSON_STRING);
+        stubFetch.restore();
+    });
+
+    it('does not change the Content-Type when a JSON object is passed to body', () => {
         const stubFetch = sinon.stub(fetchWrapper, 'fetch').returns(Promise.resolve());
         const customOptions = {
             method: POST,
@@ -155,9 +197,9 @@ describe('ImgixAPI.prototype.request', () => {
         const options = stubFetch.getCalls(0)[0].lastArg;
         assert(stubFetch.callCount == 1);
         assert.equal(typeof options, 'object');
+        
         const headers = options.headers;
         assert(headers);
-
         assert.equal(headers['Content-Type'], CONTENT_TYPE_JSON);
         stubFetch.restore();
     });
@@ -169,7 +211,7 @@ describe('ImgixAPI.prototype.request', () => {
             body: INVALID_BODY
         };
 
-        assert.throws(() => ix.request(ASSETS_ENDPOINT, customOptions).catch(resp => resp), Error);
+        assert.throws(() => ix.request(ASSETS_ENDPOINT, customOptions), Error);
         assert(stubFetch.callCount == 0);
         stubFetch.restore();
     });

@@ -8,8 +8,9 @@ const SOURCE_ID = '012abc345def678abc901def';
 const ASSETS_ENDPOINT = `assets/${SOURCE_ID}`;
 const ASSETS_URL = apiVersion => `${ API_URL }/v${ apiVersion }/${ ASSETS_ENDPOINT }`;
 const BODY_BUFFER = new Buffer.alloc(1);
-const BODY_JSON = JSON.stringify({ data: 'test' });
-const INVALID_BODY = {};
+const BODY_JSON = { data: 'test' };
+const BODY_JSON_STRING = JSON.stringify({ data: 'test' });
+const INVALID_BODY = '{';
 const POST = 'post';
 const CONTENT_TYPE_JSON = 'application/vnd.api+json';
 const CONTENT_TYPE_OCTET = 'application/octet-stream';
@@ -24,6 +25,7 @@ module.exports = {
     ASSETS_URL: ASSETS_URL,
     BODY_BUFFER: BODY_BUFFER,
     BODY_JSON: BODY_JSON,
+    BODY_JSON_STRING: BODY_JSON_STRING,
     INVALID_BODY: INVALID_BODY,
     POST: POST,
     CONTENT_TYPE_JSON: CONTENT_TYPE_JSON,
