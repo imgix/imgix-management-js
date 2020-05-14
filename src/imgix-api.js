@@ -73,17 +73,17 @@
             response = responseObject;
 
             if (response.status < 200 || response.status >= 300) {
-                return response.text();
+                return Promise.resolve(response.text());
             } else {
-                return response.json();
+                return Promise.resolve(response.json());
             }
         })
         .then(parsedResponse => {
             if (response.status < 200 || response.status >= 300) {
-                throw parsedResponse;
+                return Promise.reject(parsedResponse);
             }
 
-            return parsedResponse;
+            return Promise.resolve(parsedResponse);
         })
         .catch(error => {            
             if (response) {
