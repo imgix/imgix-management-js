@@ -2,7 +2,7 @@
 
 ![imgix logo](https://assets.imgix.net/sdk-imgix-logo.svg)
 
-`imgix-management-js` is a JavaScript client library for making requests against the [imgix](https://www.imgix.com/) management API.
+`imgix-management-js` is a JavaScript client library for making requests against the [imgix](https://www.imgix.com/) Management API.
 
 [![Build Status](https://travis-ci.org/imgix/imgix-management-js.svg?branch=master)](https://travis-ci.org/imgix/imgix-management-js)
 
@@ -38,9 +38,12 @@ The following options can be used when creating an instance of `ImgixAPI`:
 ### `ImgixAPI.request(path, options)`
 
 - `path`: String, required. A partial path representing the relative URL endpoint to request. This will typically require a `sourceId`.
-- `options`: A combination of User and [HTTP(S)](#Options) options.
+- `options`: Object. Any custom HTTP(S) settings to be applied to a request.
+  - `method`: String, required. The request [method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods), defaults to 'GET'.
+  - `headers`: Object. Additional [information](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) included with a request.
+  - `body`: Object, String, or Buffer. A resource, such as binary data or a file, included with the request.
 
-Makes a request against the specified imgix management API endpoint.
+Makes a request against the specified imgix Management API endpoint.
 
 **Returns**: <code>Promise<[Response](#class-response)></code>
 
@@ -48,20 +51,20 @@ The supplied `path` should be a relative URL, such as `assets/{sourceId}`. Using
 
 `ImgixAPI` will intelligently populate any necessary headers prior to completing the request. This includes fields such as `Content-Type` and `Authorization`. Outside of that, the `options` argument can be used to override certain defaults, such as the HTTP request method, or provide a file for uploading.
 
-## Usage
+## Usage Examples
 
-### Search: retrieve a list of images
+### Retrieve a list of images
 
 ```js
-ix.request(`assets/${sourceId}`)
-.then(res => console.log(res));
+imgix.request(`assets/${sourceId}`)
+.then(response => console.log(JSON.stringify(response, null, 2)));
 ```
 
 ## Retrieve all details for a single image
 
 ```js
-ix.request(`assets/${sourceId}/${originPath}`)
-.then(res => console.log(res));
+imgix.request(`assets/${sourceId}/${originPath}`)
+.then(response => console.log(JSON.stringify(response, null, 2)));
 ```
 
 ### Patch asset metadata
@@ -85,11 +88,11 @@ var metadata = {
     }
 };
 
-ix.request('assets/${sourceId}/uploads/pecanpie.jpg',{
+imgix.request('assets/${sourceId}/uploads/pecanpie.jpg',{
     method: 'PATCH',
-    body: JSON.stringify(metadata)
+    body: metadata
 })
-.then(res => console.log(res));
+.then(response => console.log(JSON.stringify(response, null, 2)));
 ```
 
 ### Uploading an image
@@ -97,9 +100,9 @@ ix.request('assets/${sourceId}/uploads/pecanpie.jpg',{
 ```js
 const data = fs.readFileSync('./src/monstera.jpg');
 
-ix.request('sources/upload/5d703ed13f876f000190b31d/monstera.jpg', {
+imgix.request('sources/upload/5d703ed13f876f000190b31d/monstera.jpg', {
     method: 'POST',
     body: data
 })
-
+.then(response => console.log(JSON.stringify(response, null, 2)));
 ```
