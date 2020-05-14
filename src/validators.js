@@ -18,7 +18,10 @@ function validateOpts(options) {
 function validateBody(body) {
     const invalidBodyError = new TypeError('The request body must a valid JSON object or a Buffer');
 
-    const isValid = body && (isJSON(body) || isBuffer(body));
+    const isValid = body && (
+        isJSONString(body) ||
+        isJSONObject(body) ||
+        isBuffer(body));
     assert(isValid, invalidBodyError);
 };
 
@@ -26,19 +29,29 @@ function isBuffer(body) {
     return Buffer.isBuffer(body);
 };
 
-function isJSON(body) {
+function isJSONString(body) {
     try {
         JSON.parse(body);
     } catch (e) {
         return false;
     }
     return true;
-}
+};
+
+function isJSONObject(body) {
+    try {
+        assert.equal(typeof body, 'object');
+    } catch (e) {
+        return false;
+    }
+    return true;
+};
 
 module.exports = {
     validateApiKey: validateApiKey,
     validateOpts: validateOpts,
     validateBody: validateBody,
     isBuffer: isBuffer,
-    isJSON: isJSON
+    isJSONString: isJSONString,
+    isJSONObject: isJSONObject
 }
