@@ -66,28 +66,29 @@
             },
         };
         const url = constructUrl(path, this.settings.version);
-        let response = null;
 
         return fetchWrapper.fetch(url, options)
-        .then(responseObject => {
-            response = responseObject;
-
+        .then(response => {
             if (response.status < 200 || response.status >= 300) {
-                return Promise.resolve(response.text());
+                return Promise.reject(response);
             } else {
-                return Promise.resolve(response.json());
+                return response.json();
             }
         })
-        .then(parsedResponse => {
-            if (response.status < 200 || response.status >= 300) {
-                return Promise.reject(parsedResponse);
-            }
+        .catch(error => {
+            if (error && error.status) {
+                let response;
 
-            return Promise.resolve(parsedResponse);
-        })
-        .catch(error => {            
-            if (response) {
-                throw new APIError(`Request failed with status ${ response.status }.`, error, response.status);
+                if (typeof error.json == 'function') {
+                    response = error.json();
+                } else if (typeof error.text == 'function') {
+                    response = error.text();
+                }
+
+                return response.then(data => {
+                    const status = error.status;
+                    throw new APIError(`Request failed with status ${ status }.`, data, status);
+                });
             } else {
                 throw new APIError(error.toString(), null, 'REQUEST_FAILED');
             }
