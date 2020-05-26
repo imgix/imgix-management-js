@@ -1,57 +1,59 @@
-
 const assert = require('assert');
 
-
 function validateApiKey(value) {
-    const invalidApiKeyError = new TypeError('ImgixAPI.settings.apiKey must be passed a string');
-    const legalKey = /[0-9a-f]{64}/;
-    const legalKeyError = new TypeError(`${value} does not match a legal apiKey structure`);
+  const invalidApiKeyError = new TypeError(
+    'ImgixAPI.settings.apiKey must be passed a string',
+  );
+  const legalKey = /[0-9a-f]{64}/;
+  const legalKeyError = new TypeError(
+    `${value} does not match a legal apiKey structure`,
+  );
 
-    assert(typeof value === 'string', invalidApiKeyError);
-    assert(legalKey.exec(value), legalKeyError);
-};
+  assert(typeof value === 'string', invalidApiKeyError);
+  assert(legalKey.exec(value), legalKeyError);
+}
 
 function validateOpts(options) {
-    validateApiKey(options.apiKey);
-};
+  validateApiKey(options.apiKey);
+}
 
 function validateBody(body) {
-    const invalidBodyError = new TypeError('The request body must a valid JSON object or a Buffer');
+  const invalidBodyError = new TypeError(
+    'The request body must a valid JSON object or a Buffer',
+  );
 
-    const isValid = body && (
-        isJSONString(body) ||
-        isJSONObject(body) ||
-        isBuffer(body));
-    assert(isValid, invalidBodyError);
-};
+  const isValid =
+    body && (isJSONString(body) || isJSONObject(body) || isBuffer(body));
+  assert(isValid, invalidBodyError);
+}
 
 function isBuffer(body) {
-    return Buffer.isBuffer(body);
-};
+  return Buffer.isBuffer(body);
+}
 
 function isJSONString(body) {
-    try {
-        JSON.parse(body);
-    } catch (e) {
-        return false;
-    }
-    return true;
-};
+  try {
+    JSON.parse(body);
+  } catch (e) {
+    return false;
+  }
+  return true;
+}
 
 function isJSONObject(body) {
-    try {
-        assert.equal(typeof body, 'object');
-    } catch (e) {
-        return false;
-    }
-    return true;
-};
+  try {
+    assert.equal(typeof body, 'object');
+  } catch (e) {
+    return false;
+  }
+  return true;
+}
 
 module.exports = {
-    validateApiKey: validateApiKey,
-    validateOpts: validateOpts,
-    validateBody: validateBody,
-    isBuffer: isBuffer,
-    isJSONString: isJSONString,
-    isJSONObject: isJSONObject
-}
+  validateApiKey: validateApiKey,
+  validateOpts: validateOpts,
+  validateBody: validateBody,
+  isBuffer: isBuffer,
+  isJSONString: isJSONString,
+  isJSONObject: isJSONObject,
+};
