@@ -5,8 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "test:browser": "open './test/browser/test.html'",
-    "test:all": "npm test && npm run test:browser",
     "test:watch": "mocha --watch",
     "pretty": "prettier --write '{src,test}/**/*.js'"
   },
