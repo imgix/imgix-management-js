@@ -1,3 +1,5 @@
+⚠️ **This library is currently marked as experimental. We plan to eventually integrate it as its own module in [`imgix-core-js`](https://github.com/imgix/imgix-core-js).**
+
 <!-- ix-docs-ignore -->
 
 ![imgix logo](https://assets.imgix.net/sdk-imgix-logo.svg)
@@ -14,7 +16,7 @@
 
 `npm install imgix-management-js`
 
-`imgix-management-js` exposes a class `ImgixAPI`, which can be loaded in the following way:
+`imgix-management-js` exposes a class `ImgixAPI`:
 
 ### CommonJS
 
