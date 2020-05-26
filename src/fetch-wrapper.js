@@ -5,11 +5,11 @@ const nodeFetch = require('node-fetch');
 let fetchWrapper;
 
 if (exports.window && typeof exports.window.fetch === 'function') {
-    fetchWrapper = exports.window.fetch;
+  fetchWrapper = exports.window.fetch;
 } else {
-    fetchWrapper = nodeFetch;
+  fetchWrapper = nodeFetch;
 }
 
 module.exports = {
-    fetch: fetchWrapper,
+  fetch: fetchWrapper,
 };
