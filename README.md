@@ -47,7 +47,7 @@ The following options can be used when creating an instance of `ImgixAPI`:
 
 Makes a request against the specified imgix Management API endpoint.
 
-**Returns**: <code>Promise<[Response](#class-response)></code>
+**Returns**: `Promise<[Response]>`
 
 The supplied `path` should be a relative URL, such as `assets/{sourceId}`. Using this path, the full API URL will be constructed at the time that the request is made, saving users the need to provide the full URL themselves each time.
 
@@ -102,7 +102,7 @@ imgix.request('assets/${sourceId}/uploads/pecanpie.jpg',{
 ```js
 const data = fs.readFileSync('./src/monstera.jpg');
 
-imgix.request('sources/upload/5d703ed13f876f000190b31d/monstera.jpg', {
+imgix.request(`sources/upload/${sourceId}/monstera.jpg`, {
     method: 'POST',
     body: data
 })
