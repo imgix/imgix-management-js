@@ -1,5 +1,5 @@
 {
-  "name": "imgix-api-js",
+  "name": "imgix-management-js",
   "version": "0.1.0",
   "description": "A Javascript library that wraps the imgix public API",
   "main": "index.js",
@@ -15,6 +15,10 @@
   ],
   "author": "Sherwin Heydarbeygi (https://github.com/sherwinski)",
   "license": "BSD-2-Clause",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imgix/imgix-management-js.git"
+  },
   "dependencies": {
     "node-fetch": "^2.6.0"
   },
