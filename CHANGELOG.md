@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [0.1.1](https://github.com/imgix/imgix-management-js/compare/v0.1.1...v0.1.1) (2020-06-01)
+
+* fix: designate valid 'main' entry file ([e7df07f](https://github.com/imgix/imgix-management-js/commit/e7df07ffbc98590cbb63067887b87fd4cc1cb346))
+
 ## [0.1.0](https://github.com/imgix/imgix-management-js/compare/v0.1.0...master) (2020-05-29)
 
 Exposes a client class `ImgixAPI` for making requests against the [imgix](https://www.imgix.com/) Management API.
