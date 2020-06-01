@@ -111,3 +111,9 @@ dist/
 # Temporary folders
 tmp/
 temp/
+
+# Other folders/files used for dev
+test/
+.travis.yml
+renovate.json
+.prettierrc.js
