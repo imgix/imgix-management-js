@@ -2,7 +2,7 @@
   "name": "imgix-management-js",
   "version": "0.1.0",
   "description": "A Javascript library that wraps the imgix public API",
-  "main": "index.js",
+  "main": "src/imgix-api.js",
   "scripts": {
     "test": "mocha",
     "test:watch": "mocha --watch",
