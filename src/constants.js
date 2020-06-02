@@ -1,4 +1,4 @@
-const PACKAGE_VERSION = require('../package-lock.json').version;
+const PACKAGE_VERSION = require('../package.json').version;
 const USER_AGENT = `imgix-management-js/${PACKAGE_VERSION}`;
 const API_URL = 'https://api.imgix.com/api';
 
