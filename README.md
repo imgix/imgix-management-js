@@ -15,6 +15,17 @@
 
 <!-- /ix-docs-ignore -->
 
+- [Installation](#installation)
+    * [CommonJS](#commonjs)
+- [Configuration](#configuration)
+- [API](#api)
+    * [`ImgixAPI.request(path, options)`](#imgixapirequestpath-options)
+- [Usage Examples](#usage-examples)
+    * [Retrieve a list of images](#retrieve-a-list-of-images)
+    * [Retrieve all details for a single image](#retrieve-all-details-for-a-single-image)
+    * [Patch asset metadata](#patch-asset-metadata)
+    * [Uploading an image](#uploading-an-image)
+
 ## Installation
 
 `npm install imgix-management-js`
@@ -44,9 +55,9 @@ The following options can be used when creating an instance of `ImgixAPI`:
 
 - `path`: String, required. A partial path representing the relative URL endpoint to request. This will typically require a `sourceId`.
 - `options`: Object. Any custom HTTP(S) settings to be applied to a request.
-  - `method`: String, required. The request [method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods), defaults to 'GET'.
-  - `headers`: Object. Additional [information](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) included with a request.
-  - `body`: Object, String, or Buffer. A resource, such as binary data or a file, included with the request.
+    * `method`: String, required. The request [method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods), defaults to 'GET'.
+    * `headers`: Object. Additional [information](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) included with a request.
+    * `body`: Object, String, or Buffer. A resource, such as binary data or a file, included with the request.
 
 Makes a request against the specified imgix Management API endpoint.
 
@@ -65,7 +76,7 @@ imgix.request(`assets/${sourceId}`)
 .then(response => console.log(JSON.stringify(response, null, 2)));
 ```
 
-## Retrieve all details for a single image
+### Retrieve all details for a single image
 
 ```js
 imgix.request(`assets/${sourceId}/${originPath}`)
