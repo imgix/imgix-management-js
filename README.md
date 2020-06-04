@@ -11,6 +11,7 @@
 [![Monthly Downloads](https://img.shields.io/npm/dm/imgix-management-js.svg)](https://www.npmjs.com/package/imgix-management-js)
 [![Minified Size](https://img.shields.io/bundlephobia/min/imgix-management-js)](https://bundlephobia.com/result?p=imgix-management-js)
 [![License](https://img.shields.io/github/license/imgix/imgix-management-js)](https://github.com/imgix/imgix-management-js/blob/master/LICENSE.md)
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 ---
 
