@@ -106,7 +106,7 @@ var metadata = {
     }
 };
 
-imgix.request('assets/${sourceId}/uploads/pecanpie.jpg',{
+imgix.request(`assets/${sourceId}/uploads/pecanpie.jpg`,{
     method: 'PATCH',
     body: metadata
 })
