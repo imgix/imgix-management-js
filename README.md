@@ -25,8 +25,9 @@
 - [Usage Examples](#usage-examples)
     * [Retrieve a list of images](#retrieve-a-list-of-images)
     * [Retrieve all details for a single image](#retrieve-all-details-for-a-single-image)
-    * [Patch asset metadata](#patch-asset-metadata)
-    * [Uploading an image](#uploading-an-image)
+    * [Retrieve custom fields for a single image](#retrieve-custom-fields-for-a-single-image)
+    * [Update custom fields for a single image](#update-custom-fields-for-a-single-image)
+    * [Upload an image](#upload-an-image)
 
 ## Installation
 
@@ -85,35 +86,48 @@ imgix.request(`assets/${sourceId}/${originPath}`)
 .then(response => console.log(JSON.stringify(response, null, 2)));
 ```
 
-### Patch asset metadata
+### Retrieve custom fields for a single image
 
 ```js
-var metadata = {
-    "data": {
-        "attributes": {
-            "categories": [
-                "Dessert"
-            ],
-            "labels_user_defined": {
-                "Pecan pie": 0
-            },
-            "metadata": {
-                "my_custom_key": "my_custom_value"
-            }
-        },
-        "id": `${sourceId}/uploads/pecanpie.jpg`,
-        "type": "assets"
-    }
-};
+var customFields;
 
-imgix.request(`assets/${sourceId}/uploads/pecanpie.jpg`,{
-    method: 'PATCH',
-    body: metadata
-})
-.then(response => console.log(JSON.stringify(response, null, 2)));
+imgix.request(`assets/${sourceId}/uploads/pecanpie.jpg`)
+.then(response => {
+    customFields = response.data.attributes.customFields;
+    console.log(customFields);
+});
 ```
 
-### Uploading an image
+### Update custom fields for a single image
+
+```js
+var document = {
+    'data': {
+        'attributes': {}
+    },
+    'id': `${sourceId}/uploads/pecanpie.jpg`,
+    'type': 'assets'
+};
+
+ix.request(`assets/${sourceId}/uploads/pecanpie.jpg`)
+.then(response => {
+    /*
+    ** Populate `document` with all pre-existing fields
+    ** so as to not overwrite them when sending a PATCH request
+    */
+    document.data.attributes.custom_fields = response.data.attributes.custom_fields;
+    document.data.attributes.custom_fields.type = 'dessert';
+
+    // PATCH request to write in new custom field
+    ix.request(`assets/${sourceId}/uploads/pecanpie.jpg`, {
+        method: 'PATCH',
+        body: document
+    })
+    .then(response => console.log(response.data.attributes))
+})
+```
+
+### Upload an image
 
 ```js
 const data = fs.readFileSync('./src/monstera.jpg');
