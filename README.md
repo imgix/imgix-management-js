@@ -103,10 +103,10 @@ imgix.request(`assets/${sourceId}/uploads/pecanpie.jpg`)
 ```js
 var document = {
     'data': {
+        'id': `${sourceId}/uploads/pecanpie.jpg`,
+        'type': 'assets',
         'attributes': {}
-    },
-    'id': `${sourceId}/uploads/pecanpie.jpg`,
-    'type': 'assets'
+    }
 };
 
 ix.request(`assets/${sourceId}/uploads/pecanpie.jpg`)
