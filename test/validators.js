@@ -9,11 +9,6 @@ describe('Validators', () => {
       invalidApiKey = 123;
       assert.throws(() => validators.validateApiKey(invalidApiKey), Error);
     });
-
-    it('throws an error if ImgixAPI.settings.apiKey does not adhere to the expected structure', () => {
-      invalidApiKey = 'abcdef';
-      assert.throws(() => validators.validateApiKey(invalidApiKey), Error);
-    });
   });
 
   context('validateOpts', () => {
