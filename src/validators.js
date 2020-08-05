@@ -4,13 +4,8 @@ function validateApiKey(value) {
   const invalidApiKeyError = new TypeError(
     'ImgixAPI.settings.apiKey must be passed a string',
   );
-  const legalKey = /[0-9a-f]{64}/;
-  const legalKeyError = new TypeError(
-    `${value} does not match a legal apiKey structure`,
-  );
 
   assert(typeof value === 'string', invalidApiKeyError);
-  assert(legalKey.exec(value), legalKeyError);
 }
 
 function validateOpts(options) {
