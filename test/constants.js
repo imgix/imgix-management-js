@@ -1,8 +1,8 @@
 const { API_URL } = require('../src/constants');
 
 const API_KEY =
-  'abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789';
-const AUTHORIZATION_HEADER = `apikey ${API_KEY}`;
+  'ak_abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789';
+const AUTHORIZATION_HEADER = `Bearer ${API_KEY}`;
 const INVALID_API_KEY = 'TEST-KEY';
 const API_VERSION_OVERRIDE = 2;
 const SOURCE_ID = '012abc345def678abc901def';
