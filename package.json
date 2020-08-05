@@ -1,6 +1,6 @@
 {
   "name": "imgix-management-js",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A Javascript library that wraps the imgix public API",
   "main": "src/imgix-api.js",
   "scripts": {

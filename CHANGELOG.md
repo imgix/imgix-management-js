@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.0.0](https://github.com/imgix/imgix-management-js/compare/v0.1.2...v1.0.0) (2020-08-05)
+
+* chore: emit `apiKey` deprecation warning [#31](https://github.com/imgix/imgix-management-js/pull/31)
+
+**Warning**: Your current `apiKey` will no longer work after upgrading to `imgix-management-js@1.0.0`. After upgrading, please regenerate your API Key at https://dashboard.imgix.com/api-keys
+
 ## [0.1.2](https://github.com/imgix/imgix-management-js/compare/v0.1.1...v0.1.2) (2020-06-02)
 
 * fix: incorrectly extracted package version from package-lock file ([#21](https://github.com/imgix/imgix-management-js/pull/21))
