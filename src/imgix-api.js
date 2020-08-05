@@ -45,11 +45,6 @@
     function ImgixAPI(opts = {}) {
       validateOpts(opts);
       this.settings = Object.assign({}, DEFAULTS, opts);
-
-      const APIKEY_DEPRECATION_MSG =
-        'Warning: Your current `ImgixAPI.settings.apiKey` will no longer work after upgrading to imgix-management-js version >= 1.0.0.\n' +
-        'After upgrading, please regenerate your API Key at https://dashboard.imgix.com/api-keys.';
-      console.warn(APIKEY_DEPRECATION_MSG);
     }
 
     return ImgixAPI;
