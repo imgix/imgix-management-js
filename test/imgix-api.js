@@ -62,12 +62,25 @@ describe('The ImgixAPI class', () => {
     }, Error);
   });
 
-  it('throws an error if an API key does not adhere to the expected structure', () => {
-    assert.throws(() => {
-      new ImgixAPI({
-        apiKey: INVALID_API_KEY,
-      });
-    }, Error);
+  it('returns a request error if an API key does not adhere to the expected structure', () => {
+    let ix = new ImgixAPI({
+      apiKey: INVALID_API_KEY,
+    });
+
+    const EXPRECTED_ERR = 'A valid API key is required and could not be determined.';
+
+    ix.request(ASSETS_ENDPOINT).catch((error) => {
+      assert(error);
+      assert.equal(typeof error, 'object');
+      assert(error.response);
+      assert.equal(typeof error.response, 'object');
+      assert.equal(error.response.errors[0].detail, EXPRECTED_ERR);
+      assert(error.message);
+      assert.equal(typeof error.message, 'string');
+      assert(error.status);
+      assert.equal(error.status, 401);
+      assert(error.toString);
+    });
   });
 
   it('fetch exists in the global namespace as window.fetch', () => {
