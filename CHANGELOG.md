@@ -1,6 +1,10 @@
 # CHANGELOG
 
-## [1.0.0](https://github.com/imgix/imgix-management-js/compare/v0.1.2...v1.0.0) (2020-08-05)
+## [1.0.0](https://github.com/imgix/imgix-management-js/compare/v0.2.0...v1.0.0) (2020-08-05)
+
+* feat: use `Authorization: Bearer` in request header ([#33](https://github.com/imgix/imgix-management-js/pull/33))
+
+## [0.2.0](https://github.com/imgix/imgix-management-js/compare/v0.1.2...v0.2.0) (2020-08-05)
 
 * chore: emit `apiKey` deprecation warning ([#31](https://github.com/imgix/imgix-management-js/pull/31))
 
