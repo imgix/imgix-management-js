@@ -50,7 +50,6 @@ const imgix = new ImgixAPI({
 The following options can be used when creating an instance of `ImgixAPI`:
 
 - `apiKey`: String, required. The token used to authenticate API requests.
-  - **Warning**: Your current `apiKey` will no longer work after upgrading to `imgix-management-js@1.0.0`. After upgrading, please regenerate your API Key at https://dashboard.imgix.com/api-keys
 - `version`: Integer. The version of the API that will be requested against. Defaults to `1`.
 
 ## API

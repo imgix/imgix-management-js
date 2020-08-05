@@ -50,20 +50,10 @@ describe('The ImgixAPI class', () => {
   });
 
   it('allows the API key to be set via the constructor', () => {
-    const APIKEY_DEPRECATION_MSG =
-      'Warning: Your current `ImgixAPI.settings.apiKey` will no longer work after upgrading to imgix-management-js version >= 1.0.0.\n' +
-      'After upgrading, please regenerate your API Key at https://dashboard.imgix.com/api-keys.';
-
-    var stub = sinon.stub(console, 'warn').callsFake(function (warning) {
-      assert.equal(warning, APIKEY_DEPRECATION_MSG);
-    });
-
     let ix = new ImgixAPI({
       apiKey: API_KEY,
     });
     assert.equal(ix.settings.apiKey, API_KEY);
-
-    stub.restore();
   });
 
   it('throws an error if instantiated without an API key', () => {
