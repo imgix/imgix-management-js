@@ -62,7 +62,7 @@
 
     const defaultHeaders = {
       'Content-Type': 'application/vnd.api+json',
-      Authorization: `apikey ${this.settings.apiKey}`,
+      Authorization: `Bearer ${this.settings.apiKey}`,
       'User-Agent': USER_AGENT,
     };
 
