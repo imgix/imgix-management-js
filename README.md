@@ -109,7 +109,7 @@ var document = {
     }
 };
 
-ix.request(`assets/${sourceId}/uploads/pecanpie.jpg`)
+imgix.request(`assets/${sourceId}/uploads/pecanpie.jpg`)
 .then(response => {
     /*
     ** Populate `document` with all pre-existing fields
@@ -119,7 +119,7 @@ ix.request(`assets/${sourceId}/uploads/pecanpie.jpg`)
     document.data.attributes.custom_fields.type = 'dessert';
 
     // PATCH request to write in new custom field
-    ix.request(`assets/${sourceId}/uploads/pecanpie.jpg`, {
+    imgix.request(`assets/${sourceId}/uploads/pecanpie.jpg`, {
         method: 'PATCH',
         body: document
     })
@@ -133,6 +133,74 @@ ix.request(`assets/${sourceId}/uploads/pecanpie.jpg`)
 const data = fs.readFileSync('./src/monstera.jpg');
 
 imgix.request(`sources/upload/${sourceId}/monstera.jpg`, {
+    method: 'POST',
+    body: data
+})
+.then(response => console.log(JSON.stringify(response, null, 2)));
+```
+
+### Retrieve all sources
+
+```js
+imgix.request(`sources`)
+.then(response => console.log(JSON.stringify(response, null, 2)));
+```
+
+### Specify the fields returned
+
+```js
+// To request a deeply-nested field, use dot notation
+
+imgix.request(`sources/${sourceId}?fields[sources]=name,deployment_status,deployment.default_params`)
+.then(resp => console.log(resp));
+```
+
+### Paging by page number and size
+
+```js
+imgix.request(`assets/${sourceId}?page[number]=0&page[size]=1`)
+.then(resp => console.log(resp))
+```
+
+### Sorting lists of objects
+
+```js
+// To sort a field in descending order, prepend a dash “-” to the field name.
+
+imgix.request('sources?sort=name&fields[sources]=name')
+.then(resp => console.log(resp))
+```
+
+### Filtering lists of objects
+
+```js
+imgix.request('sources?filter[name]=staging&filter[deployment.type]=s3')
+.then(resp => console.log(resp))
+```
+
+### Create an object
+
+```js
+var data = {
+  "data": {
+    "attributes": {
+      "name": "New Web Folder Source",
+      "deployment": {
+        "type": "webfolder",
+        "webfolder_base_url": "https://my-domain.com/images/",
+        "imgix_subdomains": [
+          "my-unique-imgix-subdomain"
+        ]
+      }
+    },
+    "type": "sources"
+  },
+  "jsonapi": {
+    "version": "1.0"
+  }
+}
+
+imgix.request(`sources`, {
     method: 'POST',
     body: data
 })
