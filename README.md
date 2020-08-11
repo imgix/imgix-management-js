@@ -28,6 +28,12 @@
     * [Retrieve custom fields for a single image](#retrieve-custom-fields-for-a-single-image)
     * [Update custom fields for a single image](#update-custom-fields-for-a-single-image)
     * [Upload an image](#upload-an-image)
+    * [Retrieve all sources](#retrieve-all-sources)
+    * [Specify the fields returned](#specify-the-fields-returned)
+    * [Paging by page number and size](#paging-by-page-number-and-size)
+    * [Sorting lists of objects](#sorting-lists-of-objects)
+    * [Filtering lists of objects](#filtering-lists-of-objects)
+    * [Create an object](#create-an-object)
 
 ## Installation
 
