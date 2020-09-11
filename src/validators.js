@@ -1,5 +1,5 @@
-const assert = require('assert');
-
+// const assert = require('assert');
+import { assert } from 'assert';
 function validateApiKey(value) {
   const invalidApiKeyError = new TypeError(
     'ImgixAPI.settings.apiKey must be passed a string',
@@ -44,7 +44,7 @@ function isJSONObject(body) {
   return true;
 }
 
-module.exports = {
+export default {
   validateApiKey: validateApiKey,
   validateOpts: validateOpts,
   validateBody: validateBody,
