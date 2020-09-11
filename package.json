@@ -4,6 +4,7 @@
   "description": "A Javascript library that wraps the imgix public API",
   "main": "src/imgix-api.js",
   "scripts": {
+    "build": "rollup -c",
     "test": "mocha",
     "test:watch": "mocha --watch",
     "pretty": "prettier --write '{src,test}/**/*.js'"
