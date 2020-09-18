@@ -5,6 +5,7 @@
   "main": "src/imgix-api.js",
   "scripts": {
     "build": "rollup -c",
+    "build:watch": "rollup -c -w",
     "test": "mocha",
     "test:watch": "mocha --watch",
     "pretty": "prettier --write '{src,test}/**/*.js'"
