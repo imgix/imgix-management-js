@@ -1,5 +1,5 @@
 // Custom API error to throw
-function APIError(message, data, status) {
+export default function APIError(message, data, status) {
   let response = null;
   let isObject = false;
 
@@ -20,4 +20,4 @@ function APIError(message, data, status) {
     }`;
 }
 
-module.exports = APIError;
+// module.exports = APIError;

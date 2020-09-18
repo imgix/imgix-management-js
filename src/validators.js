@@ -1,4 +1,5 @@
-const assert = require('assert');
+// const assert = require('assert');
+import assert from 'assert';
 
 function validateApiKey(value) {
   const invalidApiKeyError = new TypeError(
@@ -8,11 +9,11 @@ function validateApiKey(value) {
   assert(typeof value === 'string', invalidApiKeyError);
 }
 
-function validateOpts(options) {
+export function validateOpts(options) {
   validateApiKey(options.apiKey);
 }
 
-function validateBody(body) {
+export function validateBody(body) {
   const invalidBodyError = new TypeError(
     'The request body must a valid JSON object or a Buffer',
   );
@@ -22,7 +23,7 @@ function validateBody(body) {
   assert(isValid, invalidBodyError);
 }
 
-function isBuffer(body) {
+export function isBuffer(body) {
   return Buffer.isBuffer(body);
 }
 
@@ -44,11 +45,12 @@ function isJSONObject(body) {
   return true;
 }
 
-module.exports = {
-  validateApiKey: validateApiKey,
-  validateOpts: validateOpts,
-  validateBody: validateBody,
-  isBuffer: isBuffer,
-  isJSONString: isJSONString,
-  isJSONObject: isJSONObject,
-};
+
+// module.exports = {
+//   validateApiKey: validateApiKey,
+//   validateOpts: validateOpts,
+//   validateBody: validateBody,
+//   isBuffer: isBuffer,
+//   isJSONString: isJSONString,
+//   isJSONObject: isJSONObject,
+// };
