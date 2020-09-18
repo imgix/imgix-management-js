@@ -51,8 +51,9 @@ ImgixAPI.prototype.request = function (path, userOptions = {}) {
   };
   const url = constructUrl(path, this.settings.version);
 
-  return fetchWrapper
-    .fetch(url, options)
+  // console.log(fetchWrapper.fetch);
+  return fetchWrapper(url, options)
+    // .fetch(url, options)
     .then((response) => {
       if (response.status < 200 || response.status >= 300) {
         return Promise.reject(response);
@@ -70,6 +71,7 @@ ImgixAPI.prototype.request = function (path, userOptions = {}) {
           response = error.text();
         }
 
+        // console.log('Error output: \n',error);
         return response.then((data) => {
           const status = error.status;
           throw new APIError(
