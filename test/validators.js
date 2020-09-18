@@ -1,4 +1,5 @@
-const validators = require('../src/validators');
+// const validators = require('../src/validators');
+const validators = require('../dist/validators.cjs');
 const assert = require('assert');
 
 const { API_KEY, API_VERSION_OVERRIDE } = require('./constants');

@@ -1,4 +1,5 @@
-const { API_URL } = require('../src/constants');
+// const { API_URL } = require('../src/constants');
+const { API_URL } = require('../dist/constants.cjs');
 
 const API_KEY =
   'ak_abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789';
