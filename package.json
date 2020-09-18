@@ -4,6 +4,7 @@
   "description": "A Javascript library that wraps the imgix public API",
   "main": "src/imgix-api.js",
   "scripts": {
+    "build": "rollup -c",
     "test": "mocha",
     "test:watch": "mocha --watch",
     "pretty": "prettier --write '{src,test}/**/*.js'"
@@ -26,6 +27,7 @@
     "chai": "4.2.0",
     "mocha": "8.1.3",
     "prettier": "2.1.2",
+    "rollup": "^2.27.0",
     "sinon": "9.0.3"
   }
 }
