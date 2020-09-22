@@ -4,8 +4,8 @@ const nodeFetch = require('node-fetch');
 // window.fetch or node-fetch to complete requests
 let fetchWrapper;
 
-if (exports.window && typeof exports.window.fetch === 'function') {
-  fetchWrapper = exports.window.fetch;
+if (typeof window !== 'undefined' && typeof window.fetch === 'function') {
+  fetchWrapper = window.fetch;
 } else {
   fetchWrapper = nodeFetch;
 }
