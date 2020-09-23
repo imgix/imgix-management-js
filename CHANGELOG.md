@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [1.1.0-alpha.1](https://github.com/imgix/imgix-management-js/compare/v1.0.0...v1.1.0-alpha.1) (2020-09-23)
+
+* fix: incorrect reference to `Window` obj ([#45](https://github.com/imgix/imgix-management-js/pull/45))
+
 ## [1.0.0](https://github.com/imgix/imgix-management-js/compare/v0.2.0...v1.0.0) (2020-08-05)
 
 * feat: use `Authorization: Bearer` in request header ([#33](https://github.com/imgix/imgix-management-js/pull/33))
