@@ -1,6 +1,7 @@
 import APIError from './api-error';
 import { API_URL, USER_AGENT } from './constants';
 import { validateOpts, validateBody, isBuffer } from './validators';
+// import { fetchWrapper } from './fetch-wrapper';
 import fetchWrapper from './fetch-wrapper';
 
 // default ImgixAPI settings passed in during instantiation
@@ -9,14 +10,10 @@ const DEFAULTS = {
   apiKey: null,
 };
 
-const ImgixAPI = (() => {
-  function ImgixAPI(opts = {}) {
-    validateOpts(opts);
-    this.settings = Object.assign({}, DEFAULTS, opts);
-  }
-
-  return ImgixAPI;
-})();
+function ImgixAPI(opts = {}) {
+  validateOpts(opts);
+  this.settings = Object.assign({}, DEFAULTS, opts);
+}
 
 ImgixAPI.prototype.request = function (path, userOptions = {}) {
   const defaultOptions = {
@@ -51,9 +48,8 @@ ImgixAPI.prototype.request = function (path, userOptions = {}) {
   };
   const url = constructUrl(path, this.settings.version);
 
-  // console.log(fetchWrapper.fetch);
-  return fetchWrapper(url, options)
-    // .fetch(url, options)
+  return fetchWrapper
+    .fetch(url, options)
     .then((response) => {
       if (response.status < 200 || response.status >= 300) {
         return Promise.reject(response);
