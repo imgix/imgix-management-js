@@ -5,7 +5,7 @@ const nodeFetch = require('node-fetch');
 let fetchWrapper;
 
 if (typeof window !== 'undefined' && typeof window.fetch === 'function') {
-  fetchWrapper = window.fetch;
+  fetchWrapper = window.fetch.bind(window);
 } else {
   fetchWrapper = nodeFetch;
 }
