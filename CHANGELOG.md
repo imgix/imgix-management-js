@@ -1,8 +1,12 @@
 # CHANGELOG
 
+## [1.1.0](https://github.com/imgix/imgix-management-js/compare/v1.1.0-alpha.2...v1.1.0) (2020-09-24)
+
+* refactor: only require node-fetch in node env ([#48](https://github.com/imgix/imgix-management-js/pull/48))
+
 ## [1.1.0-alpha.2](https://github.com/imgix/imgix-management-js/compare/v1.1.0-alpha.1...v1.1.0-alpha.2) (2020-09-24)
 
-* fix: bind to window.fetch ([#47](https://github.com/imgix/imgix-management-js/pull/47))
+* fix: bind to `window.fetch` ([#47](https://github.com/imgix/imgix-management-js/pull/47))
 
 ## [1.1.0-alpha.1](https://github.com/imgix/imgix-management-js/compare/v1.0.0...v1.1.0-alpha.1) (2020-09-23)
 
