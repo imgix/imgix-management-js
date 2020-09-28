@@ -67,7 +67,8 @@ describe('The ImgixAPI class', () => {
       apiKey: INVALID_API_KEY,
     });
 
-    const EXPRECTED_ERR = 'A valid API key is required and could not be determined.';
+    const EXPRECTED_ERR =
+      'A valid API key is required and could not be determined.';
 
     ix.request(ASSETS_ENDPOINT).catch((error) => {
       assert(error);
