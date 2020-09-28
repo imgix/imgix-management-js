@@ -78,6 +78,8 @@ The supplied `path` should be a relative URL, such as `assets/{sourceId}`. Using
 
 ## Usage Examples
 
+The following sections demonstrate how to use this library to make API requests for common use cases. For a full list of endpoints and operations, see the [management API docs](https://docs.imgix.com/apis/management).
+
 ### Retrieve a list of images
 
 ```js
