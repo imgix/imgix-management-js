@@ -1,7 +1,7 @@
 {
   "name": "imgix-management-js",
   "version": "1.1.0",
-  "description": "A Javascript library that wraps the imgix public API",
+  "description": "A Javascript library that wraps the imgix management API",
   "main": "src/imgix-api.js",
   "scripts": {
     "test": "mocha",
@@ -11,7 +11,8 @@
   "keywords": [
     "imgix",
     "api",
-    "javascript"
+    "javascript",
+    "management"
   ],
   "author": "Sherwin Heydarbeygi (https://github.com/sherwinski)",
   "license": "BSD-2-Clause",
