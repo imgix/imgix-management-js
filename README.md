@@ -12,6 +12,7 @@
 [![Minified Size](https://img.shields.io/bundlephobia/min/imgix-management-js)](https://bundlephobia.com/result?p=imgix-management-js)
 [![License](https://img.shields.io/github/license/imgix/imgix-management-js)](https://github.com/imgix/imgix-management-js/blob/main/LICENSE.md)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fimgix%2Fimgix-management-js.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fimgix%2Fimgix-management-js?ref=badge_shield)
 
 ---
 
@@ -34,6 +35,7 @@
     * [Sorting lists of objects](#sorting-lists-of-objects)
     * [Filtering lists of objects](#filtering-lists-of-objects)
     * [Create an object](#create-an-object)
+- [License](#license)
 
 ## Installation
 
@@ -214,3 +216,6 @@ imgix.request(`sources`, {
 })
 .then(response => console.log(JSON.stringify(response, null, 2)));
 ```
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fimgix%2Fimgix-management-js.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fimgix%2Fimgix-management-js?ref=badge_large)
