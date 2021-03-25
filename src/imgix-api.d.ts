@@ -6,11 +6,18 @@ type AnyJson = boolean | number | string | null | JsonArray | JsonMap;
 interface JsonMap {  [key: string]: AnyJson; }
 interface JsonArray extends Array<AnyJson> {}
 
-interface ImgixResponse {
+interface RequestResponse {
     data: JsonMap | JsonArray;
     included: JsonArray;
     jsonapi: JsonMap;
     meta: JsonMap;
+}
+
+interface RequestError {
+    response: JsonMap;
+    message: string;
+    status: number;
+    toString(): string;
 }
 
 declare class ImgixAPI {
@@ -25,7 +32,7 @@ declare class ImgixAPI {
     request(
         path: string,
         options?: RequestInit,
-    ): Promise<ImgixResponse>
+    ): Promise<RequestResponse | RequestError>
 }
 
 export = ImgixAPI;
