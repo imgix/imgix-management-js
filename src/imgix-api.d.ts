@@ -18,7 +18,7 @@ declare class ImgixAPI {
     });
 
     request(
-        path: RequestInfo,
+        path: string,
         options?: RequestInit,
     ): Promise<ImgixResponse>
 }
