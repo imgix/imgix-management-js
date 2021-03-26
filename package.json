@@ -24,10 +24,10 @@
     "url": "git+https://github.com/imgix/imgix-management-js.git"
   },
   "dependencies": {
-    "@types/node-fetch": "^2.5.8",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
+    "@types/node-fetch": "^2.5.8",
     "chai": "4.3.4",
     "dtslint": "4.0.8",
     "mocha": "8.1.3",
