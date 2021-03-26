@@ -1,5 +1,5 @@
-// Type definitions for imgix-management-js
-import { RequestInit } from "@types/node-fetch";
+/// <reference types="typescript" />
+import { RequestInit, BodyInit } from "node-fetch";
 
 // JSON types via https://github.com/microsoft/TypeScript/issues/1897#issuecomment-338650717
 type AnyJson = boolean | number | string | null | JsonArray | JsonMap;
@@ -20,6 +20,12 @@ interface RequestError {
     toString(): string;
 }
 
+interface JsonBody {
+    body?: BodyInit | JsonMap
+}
+
+type RequestOptions = RequestInit | JsonBody;
+
 declare class ImgixAPI {
     apiKey: string;
     version: number;
@@ -31,7 +37,7 @@ declare class ImgixAPI {
 
     request(
         path: string,
-        options?: RequestInit,
+        options?: RequestOptions,
     ): Promise<RequestResponse | RequestError>
 }
 
