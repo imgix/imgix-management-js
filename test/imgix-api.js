@@ -46,14 +46,14 @@ describe('The ImgixAPI class', () => {
       version: API_VERSION_OVERRIDE,
       apiKey: API_KEY,
     });
-    assert.equal(ix.settings.version, API_VERSION_OVERRIDE);
+    assert.strictEqual(ix.settings.version, API_VERSION_OVERRIDE);
   });
 
   it('allows the API key to be set via the constructor', () => {
     let ix = new ImgixAPI({
       apiKey: API_KEY,
     });
-    assert.equal(ix.settings.apiKey, API_KEY);
+    assert.strictEqual(ix.settings.apiKey, API_KEY);
   });
 
   it('throws an error if instantiated without an API key', () => {
@@ -72,14 +72,14 @@ describe('The ImgixAPI class', () => {
 
     ix.request(ASSETS_ENDPOINT).catch((error) => {
       assert(error);
-      assert.equal(typeof error, 'object');
+      assert.strictEqual(typeof error, 'object');
       assert(error.response);
-      assert.equal(typeof error.response, 'object');
-      assert.equal(error.response.errors[0].detail, EXPRECTED_ERR);
+      assert.strictEqual(typeof error.response, 'object');
+      assert.strictEqual(error.response.errors[0].detail, EXPRECTED_ERR);
       assert(error.message);
-      assert.equal(typeof error.message, 'string');
+      assert.strictEqual(typeof error.message, 'string');
       assert(error.status);
-      assert.equal(error.status, 401);
+      assert.strictEqual(error.status, 401);
       assert(error.toString);
     });
   });
@@ -100,12 +100,12 @@ describe('ImgixAPI.prototype.request', () => {
   });
 
   it('exposes a method request() on the object prototype', () => {
-    assert.equal(typeof ix.request, 'function');
+    assert.strictEqual(typeof ix.request, 'function');
   });
 
   it('calling request() returns a Promise as a response', () => {
     const promise = ix.request(ASSETS_ENDPOINT).catch((error) => error);
-    assert.equal(typeof promise.then, 'function');
+    assert.strictEqual(typeof promise.then, 'function');
   });
 
   it('constructs the full API URL prior to completing request', () => {
@@ -116,7 +116,7 @@ describe('ImgixAPI.prototype.request', () => {
 
     const url = stubFetch.getCalls(0)[0].firstArg;
     assert(stubFetch.callCount == 1);
-    assert.equal(url, ASSETS_URL(version));
+    assert.strictEqual(url, ASSETS_URL(version));
     stubFetch.restore();
   });
 
@@ -128,13 +128,13 @@ describe('ImgixAPI.prototype.request', () => {
 
     const options = stubFetch.getCalls(0)[0].lastArg;
     assert(stubFetch.callCount == 1);
-    assert.equal(typeof options, 'object');
+    assert.strictEqual(typeof options, 'object');
     const headers = options.headers;
     assert(headers);
 
-    assert.equal(headers['Content-Type'], CONTENT_TYPE_JSON);
-    assert.equal(headers['Authorization'], AUTHORIZATION_HEADER);
-    assert.equal(headers['User-Agent'], USER_AGENT);
+    assert.strictEqual(headers['Content-Type'], CONTENT_TYPE_JSON);
+    assert.strictEqual(headers['Authorization'], AUTHORIZATION_HEADER);
+    assert.strictEqual(headers['User-Agent'], USER_AGENT);
     stubFetch.restore();
   });
 
@@ -149,7 +149,7 @@ describe('ImgixAPI.prototype.request', () => {
     ix.request(ASSETS_ENDPOINT, customOptions).catch((error) => error);
 
     const options = stubFetch.getCalls(0)[0].lastArg;
-    assert.equal(options.method, POST);
+    assert.strictEqual(options.method, POST);
     stubFetch.restore();
   });
 
@@ -166,11 +166,11 @@ describe('ImgixAPI.prototype.request', () => {
 
     const options = stubFetch.getCalls(0)[0].lastArg;
     assert(stubFetch.callCount == 1);
-    assert.equal(typeof options, 'object');
+    assert.strictEqual(typeof options, 'object');
     const headers = options.headers;
     assert(headers);
 
-    assert.equal(headers['Content-Type'], CONTENT_TYPE_OCTET);
+    assert.strictEqual(headers['Content-Type'], CONTENT_TYPE_OCTET);
     stubFetch.restore();
   });
 
@@ -188,11 +188,11 @@ describe('ImgixAPI.prototype.request', () => {
     const options = stubFetch.getCalls(0)[0].lastArg;
     assert(stubFetch.callCount == 1);
     assert(options);
-    assert.equal(typeof options, 'object');
+    assert.strictEqual(typeof options, 'object');
 
     const body = options.body;
-    assert.equal(typeof body, 'string');
-    assert.equal(body, BODY_JSON_STRING);
+    assert.strictEqual(typeof body, 'string');
+    assert.strictEqual(body, BODY_JSON_STRING);
     stubFetch.restore();
   });
 
@@ -210,11 +210,11 @@ describe('ImgixAPI.prototype.request', () => {
     const options = stubFetch.getCalls(0)[0].lastArg;
     assert(stubFetch.callCount == 1);
     assert(options);
-    assert.equal(typeof options, 'object');
+    assert.strictEqual(typeof options, 'object');
 
     const body = options.body;
-    assert.equal(typeof body, 'string');
-    assert.equal(body, BODY_JSON_STRING);
+    assert.strictEqual(typeof body, 'string');
+    assert.strictEqual(body, BODY_JSON_STRING);
     stubFetch.restore();
   });
 
@@ -231,11 +231,11 @@ describe('ImgixAPI.prototype.request', () => {
 
     const options = stubFetch.getCalls(0)[0].lastArg;
     assert(stubFetch.callCount == 1);
-    assert.equal(typeof options, 'object');
+    assert.strictEqual(typeof options, 'object');
 
     const headers = options.headers;
     assert(headers);
-    assert.equal(headers['Content-Type'], CONTENT_TYPE_JSON);
+    assert.strictEqual(headers['Content-Type'], CONTENT_TYPE_JSON);
     stubFetch.restore();
   });
 
@@ -256,13 +256,13 @@ describe('ImgixAPI.prototype.request', () => {
   it('returns a rejected Promise if a request error occurs', () => {
     ix.request(ASSETS_ENDPOINT).catch((error) => {
       assert(error);
-      assert.equal(typeof error, 'object');
+      assert.strictEqual(typeof error, 'object');
       assert(error.response);
-      assert.equal(typeof error.response, 'object');
+      assert.strictEqual(typeof error.response, 'object');
       assert(error.message);
-      assert.equal(typeof error.message, 'string');
+      assert.strictEqual(typeof error.message, 'string');
       assert(error.status);
-      assert.equal(error.status, 401);
+      assert.strictEqual(error.status, 401);
       assert(error.toString);
     });
   });
@@ -274,12 +274,12 @@ describe('ImgixAPI.prototype.request', () => {
 
     ix.request(ASSETS_ENDPOINT, customOptions).catch((error) => {
       assert(error);
-      assert.equal(typeof error, 'object');
+      assert.strictEqual(typeof error, 'object');
       assert(!error.response);
       assert(error.message);
-      assert.equal(typeof error.message, 'string');
+      assert.strictEqual(typeof error.message, 'string');
       assert(error.status);
-      assert.equal(error.status, 'REQUEST_FAILED');
+      assert.strictEqual(error.status, 'REQUEST_FAILED');
       assert(error.toString);
     });
   });

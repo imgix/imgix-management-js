@@ -37,7 +37,7 @@ function isJSONString(body) {
 
 function isJSONObject(body) {
   try {
-    assert.equal(typeof body, 'object');
+    assert.strictEqual(typeof body, 'object');
   } catch (e) {
     return false;
   }
