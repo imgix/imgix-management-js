@@ -7,7 +7,7 @@
   "scripts": {
     "test": "mocha",
     "test:watch": "mocha --watch",
-    "pretty": "prettier --write '{src,test}/**/*.js'",
+    "lint": "prettier --write '{src,test,types}/**/*.{js,ts}'",
     "dtslint": "dtslint types"
   },
   "keywords": [
