@@ -3,7 +3,7 @@ class APIError extends Error {
     super(message);
     this.name = 'APIError';
     let response = null;
-    this.isObject = false;
+    let isObject = false;
 
     try {
       response = JSON.parse(data);
@@ -17,9 +17,9 @@ class APIError extends Error {
     this.status = status;
   }
 
-  toString() {
-    return `${this.message}\nResponse:\n${
-      this.isObject ? JSON.stringify(this.response, null, 2) : this.response
+  toString = () => {
+    return `\n${this.message}\nResponse:\n${
+      this.isObject ?  this.response : JSON.stringify(this.response, null, 2)
     }`;
   }
 }
