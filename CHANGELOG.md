@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [1.2.0](https://github.com/imgix/imgix-management-js/compare/v1.1.0...v1.2.0) (2021-03-26)
+
+* feat: add type definitions for ImgixAPI class and methods ([#67](https://github.com/imgix/imgix-management-js/pull/67))
+* refactor: class APIError should extend Error interface ([#70](https://github.com/imgix/imgix-management-js/pull/70))
+
 ## [1.1.0](https://github.com/imgix/imgix-management-js/compare/v1.1.0-alpha.2...v1.1.0) (2020-09-24)
 
 * refactor: only require node-fetch in node env ([#48](https://github.com/imgix/imgix-management-js/pull/48))
