@@ -13,7 +13,7 @@ interface RequestResponse {
   meta: JsonMap;
 }
 
-interface RequestError {
+interface RequestError extends Error {
   response: JsonMap;
   message: string;
   status: number;
