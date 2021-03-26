@@ -5,8 +5,9 @@
   "main": "src/imgix-api.js",
   "types": "./types/index.d.ts",
   "scripts": {
-    "test": "mocha",
+    "test:mocha": "mocha",
     "test:watch": "mocha --watch",
+    "test": "npm run test:mocha && npm run dtslint",
     "lint": "prettier --write '{src,test,types}/**/*.{js,ts}'",
     "dtslint": "dtslint types"
   },
