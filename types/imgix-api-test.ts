@@ -31,7 +31,6 @@ ix.request('sources', {
   body: BODY_JSON,
 });
 
-// $ExpectType Promise<void>
 ix.request('sources').then((response) => {
   response = response as RequestResponse;
   response.data; // $ExpectType JsonMap | JsonArray
@@ -47,3 +46,12 @@ ix.request(`${BAD_REQUEST}`).catch((error: RequestError) => {
   error.status; // $ExpectType number
   error.toString; // $ExpectType () => string
 });
+
+async function processRequest(
+  request: Promise<RequestResponse | RequestError>,
+) {
+  // $ExpectType RequestResponse | RequestError
+  const response = await request;
+}
+
+processRequest(ix.request('sources'));
