@@ -3,11 +3,9 @@ class APIError extends Error {
     super(message);
     this.name = 'APIError';
     let response = null;
-    let isObject = false;
 
     try {
       response = JSON.parse(data);
-      this.isObject = true;
     } catch (e) {
       response = data;
     }
@@ -18,10 +16,12 @@ class APIError extends Error {
   }
 
   toString = () => {
-    return `\n${this.message}\nResponse:\n${
-      this.isObject ?  this.response : JSON.stringify(this.response, null, 2)
-    }`;
-  }
+    return `\n${this.message}\nResponse:\n${JSON.stringify(
+      this.response,
+      null,
+      2,
+    )}`;
+  };
 }
 
 module.exports = APIError;
