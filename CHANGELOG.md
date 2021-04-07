@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [1.2.1-rc.1](https://github.com/imgix/imgix-management-js/compare/v1.2.0...v1.2.1-rc.1) (2021-04-07)
+
+* fix: always stringify error data ([#75](https://github.com/imgix/imgix-management-js/pull/75))
+* refactor: use standard function syntax for class method ([#76](https://github.com/imgix/imgix-management-js/pull/76))
+
 ## [1.2.0](https://github.com/imgix/imgix-management-js/compare/v1.1.0...v1.2.0) (2021-03-26)
 
 * feat: add type definitions for ImgixAPI class and methods ([#67](https://github.com/imgix/imgix-management-js/pull/67))
