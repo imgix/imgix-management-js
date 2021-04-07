@@ -15,13 +15,13 @@ class APIError extends Error {
     this.status = status;
   }
 
-  toString = () => {
-    return `\n${this.message}\nResponse:\n${JSON.stringify(
+  toString() {
+    return `${this.message}\nResponse:\n${JSON.stringify(
       this.response,
       null,
       2,
     )}`;
-  };
+  }
 }
 
 module.exports = APIError;
