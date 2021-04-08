@@ -93,7 +93,7 @@
         }
       })
       .catch((error) => {
-        if (error?.status) {
+        if (error && error.status) {
           let response;
 
           if (typeof error.json == 'function') {
