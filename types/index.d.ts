@@ -32,10 +32,11 @@ declare class ImgixAPI {
 
   constructor(opts: { apiKey: string; version?: number });
 
-  request(
-    path: string,
-    options?: RequestOptions,
-  ): Promise<RequestResponse | RequestError>;
+  /**
+   * Note: on failure, this will return a type Promise\<RequestError>
+   * @see RequestError
+   */
+  request(path: string, options?: RequestOptions): Promise<RequestResponse>;
 }
 
 export default ImgixAPI;
