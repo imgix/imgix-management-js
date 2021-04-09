@@ -32,7 +32,6 @@ ix.request('sources', {
 });
 
 ix.request('sources').then((response) => {
-  response = response as RequestResponse;
   response.data; // $ExpectType JsonMap | JsonArray
   response.included; // $ExpectType JsonArray
   response.jsonapi; // $ExpectType JsonMap
