@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [1.2.1-beta.1](https://github.com/imgix/imgix-management-js/compare/v1.2.1-rc.1...v1.2.1-beta.1) (2021-04-09)
+
+* refactor: remove optional chain operator for compatibility ([#78](https://github.com/imgix/imgix-management-js/pull/78))
+* fix: remove ResponseError from request() return type ([#78](https://github.com/imgix/imgix-management-js/pull/78))
+
 ## [1.2.1-rc.1](https://github.com/imgix/imgix-management-js/compare/v1.2.0...v1.2.1-rc.1) (2021-04-07)
 
 * fix: always stringify error data ([#75](https://github.com/imgix/imgix-management-js/pull/75))
