@@ -13,19 +13,19 @@ const ix = new ImgixAPI({
   apiKey: API_KEY,
 });
 
-// $ExpectType Promise<RequestResponse | RequestError>
+// $ExpectType Promise<RequestResponse>
 ix.request('sources');
 
-// $ExpectType Promise<RequestResponse | RequestError>
+// $ExpectType Promise<RequestResponse>
 ix.request(`${ASSETS_ENDPOINT}`);
 
-// $ExpectType Promise<RequestResponse | RequestError>
+// $ExpectType Promise<RequestResponse>
 ix.request(`sources/upload/${SOURCE_ID}/image.jpg`, {
   method: 'POST',
   body: BODY_BUFFER,
 });
 
-// $ExpectType Promise<RequestResponse | RequestError>
+// $ExpectType Promise<RequestResponse>
 ix.request('sources', {
   method: 'POST',
   body: BODY_JSON,
@@ -39,7 +39,7 @@ ix.request('sources').then((response) => {
   response.meta; // $ExpectType JsonMap
 });
 
-// $ExpectType Promise<void | RequestResponse | RequestError>
+// $ExpectType Promise<void | RequestResponse>
 ix.request(`${BAD_REQUEST}`).catch((error: RequestError) => {
   error.response; // $ExpectType JsonMap
   error.message; // $ExpectType string
@@ -47,10 +47,8 @@ ix.request(`${BAD_REQUEST}`).catch((error: RequestError) => {
   error.toString; // $ExpectType () => string
 });
 
-async function processRequest(
-  request: Promise<RequestResponse | RequestError>,
-) {
-  // $ExpectType RequestResponse | RequestError
+async function processRequest(request: Promise<RequestResponse>) {
+  // $ExpectType RequestResponse
   const response = await request;
 }
 
