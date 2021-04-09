@@ -17,8 +17,8 @@ class APIError extends Error {
 
   toString() {
     return `${this.message}
-    Response:
-    ${JSON.stringify(this.response, null, 2)}`;
+Response:
+${JSON.stringify(this.response, null, 2)}`;
   }
 }
 
