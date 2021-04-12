@@ -13,6 +13,9 @@ const ix = new ImgixAPI({
   apiKey: API_KEY,
 });
 
+// $ExpectType RequestError
+ix.APIError;
+
 // $ExpectType Promise<RequestResponse>
 ix.request('sources');
 
