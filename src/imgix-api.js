@@ -118,5 +118,7 @@
 
   const constructUrl = (path, version) => `${API_URL}/v${version}/${path}`;
 
+  ImgixAPI.APIError = APIError;
+
   return ImgixAPI;
 });
