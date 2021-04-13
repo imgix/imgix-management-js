@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [1.2.1-beta.2](https://github.com/imgix/imgix-management-js/compare/v1.2.1-beta.1...v1.2.1-beta.2) (2021-04-13)
+
+* feat: export APIError on ImgixAPI class ([#80](https://github.com/imgix/imgix-management-js/pull/80))
+
 ## [1.2.1-beta.1](https://github.com/imgix/imgix-management-js/compare/v1.2.1-rc.1...v1.2.1-beta.1) (2021-04-09)
 
 * refactor: remove optional chain operator for compatibility ([#78](https://github.com/imgix/imgix-management-js/pull/78))
