@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [1.2.1-beta.3](https://github.com/imgix/imgix-management-js/compare/v1.2.1-beta.2...v1.2.1-beta.3) (2021-04-13)
+
+* fix: specify APIError as a static class property ([#82](https://github.com/imgix/imgix-management-js/pull/82))
+
 ## [1.2.1-beta.2](https://github.com/imgix/imgix-management-js/compare/v1.2.1-beta.1...v1.2.1-beta.2) (2021-04-13)
 
 * feat: export APIError on ImgixAPI class ([#80](https://github.com/imgix/imgix-management-js/pull/80))
