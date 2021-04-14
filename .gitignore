@@ -116,3 +116,4 @@ temp/
 test/
 .travis.yml
 .prettierrc.js
+.vscode
