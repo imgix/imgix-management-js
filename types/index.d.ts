@@ -29,7 +29,7 @@ type RequestOptions = RequestInit | JsonBody;
 declare class ImgixAPI {
   apiKey: string;
   version: number;
-  APIError: RequestError;
+  static APIError: RequestError;
 
   constructor(opts: { apiKey: string; version?: number });
 
