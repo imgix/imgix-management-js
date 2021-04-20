@@ -13,7 +13,7 @@ export interface RequestResponse {
   meta: JsonMap;
 }
 
-export interface RequestError extends Error {
+export interface APIError extends Error {
   response: JsonMap;
   message: string;
   status: number;
@@ -29,13 +29,13 @@ type RequestOptions = RequestInit | JsonBody;
 declare class ImgixAPI {
   apiKey: string;
   version: number;
-  static APIError: RequestError;
+  static APIError: APIError;
 
   constructor(opts: { apiKey: string; version?: number });
 
   /**
-   * Note: on failure, this will return a type Promise\<RequestError>
-   * @see RequestError
+   * Note: on failure, this will return a type Promise\<APIError>
+   * @see APIError
    */
   request(path: string, options?: RequestOptions): Promise<RequestResponse>;
 }
