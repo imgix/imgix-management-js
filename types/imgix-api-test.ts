@@ -1,4 +1,4 @@
-import ImgixAPI, { RequestResponse, RequestError } from 'index';
+import ImgixAPI, { RequestResponse, APIError } from 'index';
 
 const API_KEY =
   'ak_abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789';
@@ -13,7 +13,7 @@ const ix = new ImgixAPI({
   apiKey: API_KEY,
 });
 
-// $ExpectType RequestError
+// $ExpectType APIError
 ImgixAPI.APIError;
 
 // $ExpectType Promise<RequestResponse>
@@ -42,7 +42,7 @@ ix.request('sources').then((response) => {
 });
 
 // $ExpectType Promise<void | RequestResponse>
-ix.request(`${BAD_REQUEST}`).catch((error: RequestError) => {
+ix.request(`${BAD_REQUEST}`).catch((error: APIError) => {
   error.response; // $ExpectType JsonMap
   error.message; // $ExpectType string
   error.status; // $ExpectType number
