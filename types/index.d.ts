@@ -14,6 +14,7 @@ export interface RequestResponse {
 }
 
 export class APIError extends Error {
+  constructor(message: string, data: JsonMap | null, status: number);
   response: JsonMap;
   message: string;
   status: number;
