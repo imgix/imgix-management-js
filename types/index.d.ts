@@ -13,7 +13,7 @@ export interface RequestResponse {
   meta: JsonMap;
 }
 
-export interface APIError extends Error {
+export class APIError extends Error {
   response: JsonMap;
   message: string;
   status: number;
