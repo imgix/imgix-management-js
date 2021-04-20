@@ -55,3 +55,14 @@ async function processRequest(request: Promise<RequestResponse>) {
 }
 
 processRequest(ix.request('sources'));
+
+try {
+  () => {};
+} catch (error) {
+  if (error instanceof APIError) {
+    error.response; // $ExpectType JsonMap
+    error.message; // $ExpectType string
+    error.status; // $ExpectType number
+    error.toString(); // $ExpectType string
+  }
+}
