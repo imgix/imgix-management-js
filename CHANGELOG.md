@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [1.2.1-beta.4](https://github.com/imgix/imgix-management-js/compare/v1.2.1-beta.3...v1.2.1-beta.4) (2021-04-20)
+
+* fix: rename RequestError to APIError to match class name ([#84](https://github.com/imgix/imgix-management-js/pull/84))
+
 ## [1.2.1-beta.3](https://github.com/imgix/imgix-management-js/compare/v1.2.1-beta.2...v1.2.1-beta.3) (2021-04-13)
 
 * fix: specify APIError as a static class property ([#82](https://github.com/imgix/imgix-management-js/pull/82))
