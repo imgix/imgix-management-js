@@ -113,13 +113,13 @@ imgix.request(`assets/${sourceId}/uploads/pecanpie.jpg`)
 ```js
 var document = {
     'data': {
-        'id': `${sourceId}/uploads/pecanpie.jpg`,
+        'id': `${sourceId}/pecanpie.jpg`,
         'type': 'assets',
         'attributes': {}
     }
 };
 
-imgix.request(`assets/${sourceId}/uploads/pecanpie.jpg`)
+imgix.request(`sources/${sourceId}/assets/pecanpie.jpg`)
 .then(response => {
     /*
     ** Populate `document` with all pre-existing fields
@@ -129,7 +129,7 @@ imgix.request(`assets/${sourceId}/uploads/pecanpie.jpg`)
     document.data.attributes.custom_fields.type = 'dessert';
 
     // PATCH request to write in new custom field
-    imgix.request(`assets/${sourceId}/uploads/pecanpie.jpg`, {
+    imgix.request(`sources/${sourceId}/assets/pecanpie.jpg`, {
         method: 'PATCH',
         body: document
     })
