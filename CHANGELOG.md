@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [1.2.1](https://github.com/imgix/imgix-management-js/compare/v1.2.0...v1.2.1) (2021-04-23)
+
+* fix: rename RequestError to APIError to match class name ([#84](https://github.com/imgix/imgix-management-js/pull/84))
+* fix: specify APIError as a static class property ([#82](https://github.com/imgix/imgix-management-js/pull/82))
+* feat: export APIError on ImgixAPI class ([#80](https://github.com/imgix/imgix-management-js/pull/80))
+* refactor: remove optional chain operator for compatibility ([#78](https://github.com/imgix/imgix-management-js/pull/78))
+* fix: remove ResponseError from request() return type ([#78](https://github.com/imgix/imgix-management-js/pull/78))
+* fix: always stringify error data ([#75](https://github.com/imgix/imgix-management-js/pull/75))
+* refactor: use standard function syntax for class method ([#76](https://github.com/imgix/imgix-management-js/pull/76))
+
 ## [1.2.1-beta.4](https://github.com/imgix/imgix-management-js/compare/v1.2.1-beta.3...v1.2.1-beta.4) (2021-04-20)
 
 * fix: rename RequestError to APIError to match class name ([#84](https://github.com/imgix/imgix-management-js/pull/84))
