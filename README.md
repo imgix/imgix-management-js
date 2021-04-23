@@ -1,4 +1,4 @@
-⚠️ **This library is currently marked as experimental. We plan to eventually integrate it as its own module in [`imgix-core-js`](https://github.com/imgix/imgix-core-js).**
+⚠️ **This library is currently marked as experimental. We plan to eventually integrate it as its own module in [`@imgix/js-core`](https://github.com/imgix/js-core).**
 
 <!-- ix-docs-ignore -->
 
