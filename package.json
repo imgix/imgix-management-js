@@ -30,7 +30,7 @@
     "@types/node-fetch": "2.5.10",
     "chai": "4.3.4",
     "dtslint": "4.0.9",
-    "mocha": "8.3.2",
+    "mocha": "8.4.0",
     "prettier": "2.2.1",
     "sinon": "10.0.0"
   }
