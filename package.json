@@ -29,7 +29,7 @@
   "devDependencies": {
     "@types/node-fetch": "2.5.10",
     "chai": "4.3.4",
-    "dtslint": "4.0.9",
+    "dtslint": "4.1.0",
     "mocha": "8.4.0",
     "prettier": "2.3.0",
     "sinon": "10.0.0"
