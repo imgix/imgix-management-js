@@ -1,10 +1,9 @@
-/// <reference types="typescript" />
 import { RequestInit, BodyInit } from 'node-fetch';
 
 // JSON types via https://github.com/microsoft/TypeScript/issues/1897#issuecomment-338650717
 type AnyJson = boolean | number | string | null | JsonArray | JsonMap;
-interface JsonMap extends Record<string, AnyJson> {}
-interface JsonArray extends Array<AnyJson> {}
+export interface JsonMap extends Record<string, AnyJson> {}
+export interface JsonArray extends Array<AnyJson> {}
 
 export interface RequestResponse {
   data: JsonMap | JsonArray;
