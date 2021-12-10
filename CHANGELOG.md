@@ -1,7 +1,14 @@
 # CHANGELOG
 
+## [1.2.2](https://github.com/imgix/imgix-management-js/compare/v1.2.1...v1.2.2) (2021-12-10)
+
+* chore: replace dtslint dev-dependency with tsd ([#90](https://github.com/imgix/imgix-management-js/pull/90))
+* chore: bump other dependencies
+
 ## [1.2.1](https://github.com/imgix/imgix-management-js/compare/v1.2.0...v1.2.1) (2021-04-23)
 
+* docs: update mention of imgix-core-js to @imgix/js-core ([#87](https://github.com/imgix/imgix-management-js/pull/87))
+* docs: fixes routes and id ([#86](https://github.com/imgix/imgix-management-js/pull/86))
 * fix: rename RequestError to APIError to match class name ([#84](https://github.com/imgix/imgix-management-js/pull/84))
 * fix: specify APIError as a static class property ([#82](https://github.com/imgix/imgix-management-js/pull/82))
 * feat: export APIError on ImgixAPI class ([#80](https://github.com/imgix/imgix-management-js/pull/80))
