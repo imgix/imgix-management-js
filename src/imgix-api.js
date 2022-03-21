@@ -77,6 +77,9 @@
       ...defaultOptions,
       ...userOptions,
       headers: {
+        ...(this.settings.pluginOrigin && {
+          'X-imgix-plugin': this.settings.pluginOrigin,
+        }),
         ...userOptions.headers,
         ...defaultHeaders,
       },
