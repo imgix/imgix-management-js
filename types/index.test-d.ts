@@ -11,6 +11,8 @@ const BODY_JSON = { data: 'test' };
 
 const ix = new ImgixAPI({
   apiKey: API_KEY,
+  version: 1,
+  pluginOrigin: 'management',
 });
 expectType<ImgixAPI>(ix);
 
