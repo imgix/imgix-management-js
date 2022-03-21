@@ -1,4 +1,4 @@
-import { expectType } from "tsd";
+import { expectType } from 'tsd';
 import ImgixAPI, { RequestResponse, APIError, JsonArray, JsonMap } from '.';
 
 const API_KEY =
@@ -22,15 +22,19 @@ expectType<Promise<RequestResponse>>(ix.request('sources'));
 
 expectType<Promise<RequestResponse>>(ix.request(`${ASSETS_ENDPOINT}`));
 
-expectType<Promise<RequestResponse>>(ix.request(`sources/upload/${SOURCE_ID}/image.jpg`, {
-  method: 'POST',
-  body: BODY_BUFFER,
-}));
+expectType<Promise<RequestResponse>>(
+  ix.request(`sources/upload/${SOURCE_ID}/image.jpg`, {
+    method: 'POST',
+    body: BODY_BUFFER,
+  }),
+);
 
-expectType<Promise<RequestResponse>>(ix.request('sources', {
-  method: 'POST',
-  body: BODY_JSON,
-}));
+expectType<Promise<RequestResponse>>(
+  ix.request('sources', {
+    method: 'POST',
+    body: BODY_JSON,
+  }),
+);
 
 ix.request('sources').then((response) => {
   expectType<JsonMap | JsonArray>(response.data);
@@ -39,12 +43,14 @@ ix.request('sources').then((response) => {
   expectType<JsonMap>(response.meta);
 });
 
-expectType<Promise<void | RequestResponse>>(ix.request(`${BAD_REQUEST}`).catch((error: APIError) => {
-  expectType<JsonMap>(error.response);
-  expectType<string>(error.message);
-  expectType<number>(error.status);
-  expectType<() => string>(error.toString);
-}));
+expectType<Promise<void | RequestResponse>>(
+  ix.request(`${BAD_REQUEST}`).catch((error: APIError) => {
+    expectType<JsonMap>(error.response);
+    expectType<string>(error.message);
+    expectType<number>(error.status);
+    expectType<() => string>(error.toString);
+  }),
+);
 
 async function processRequest(request: Promise<RequestResponse>) {
   const response = await request;
