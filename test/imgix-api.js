@@ -11,6 +11,7 @@ const {
   AUTHORIZATION_HEADER,
   INVALID_API_KEY,
   API_VERSION_OVERRIDE,
+  PLUGIN_ORIGIN,
   ASSETS_ENDPOINT,
   ASSETS_URL,
   BODY_BUFFER,
@@ -47,6 +48,15 @@ describe('The ImgixAPI class', () => {
       apiKey: API_KEY,
     });
     assert.strictEqual(ix.settings.version, API_VERSION_OVERRIDE);
+  });
+
+  it('respects the plugin origin name passed into the constructor', () => {
+    let ix = new ImgixAPI({
+      pluginOrigin: PLUGIN_ORIGIN,
+      apiKey: API_KEY,
+    });
+
+    assert.strictEqual(ix.settings.pluginOrigin, PLUGIN_ORIGIN);
   });
 
   it('allows the API key to be set via the constructor', () => {
@@ -95,6 +105,7 @@ describe('ImgixAPI.prototype.request', () => {
   before(() => {
     ix = new ImgixAPI({
       apiKey: API_KEY,
+      pluginOrigin: PLUGIN_ORIGIN,
     });
     version = ix.settings.version;
   });
@@ -132,6 +143,7 @@ describe('ImgixAPI.prototype.request', () => {
     const headers = options.headers;
     assert(headers);
 
+    assert.strictEqual(headers['X-imgix-plugin'], PLUGIN_ORIGIN);
     assert.strictEqual(headers['Content-Type'], CONTENT_TYPE_JSON);
     assert.strictEqual(headers['Authorization'], AUTHORIZATION_HEADER);
     assert.strictEqual(headers['User-Agent'], USER_AGENT);
