@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [1.3.0-rc.1](https://github.com/imgix/imgix-management-js/compare/v1.2.2...v1.3.0-rc.1) (2022-03-23)
+
+* feat: add (experimental) class variable to set plugin header ([#95](https://github.com/imgix/imgix-management-js/pull/95))
+
 ## [1.2.2](https://github.com/imgix/imgix-management-js/compare/v1.2.1...v1.2.2) (2021-12-10)
 
 * chore: replace dtslint dev-dependency with tsd ([#90](https://github.com/imgix/imgix-management-js/pull/90))
