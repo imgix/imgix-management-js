@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [1.3.0](https://github.com/imgix/imgix-management-js/compare/v1.2.2...v1.3.0) (2022-03-25)
+
+* feat: add class variable to set plugin header ([#95](https://github.com/imgix/imgix-management-js/pull/95))
+
 ## [1.3.0-rc.1](https://github.com/imgix/imgix-management-js/compare/v1.2.2...v1.3.0-rc.1) (2022-03-23)
 
 * feat: add (experimental) class variable to set plugin header ([#95](https://github.com/imgix/imgix-management-js/pull/95))
