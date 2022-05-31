@@ -1,11 +1,11 @@
-const assert = require('assert');
-
 function validateApiKey(value) {
   const invalidApiKeyError = new TypeError(
     'ImgixAPI.settings.apiKey must be passed a string',
   );
 
-  assert(typeof value === 'string', invalidApiKeyError);
+  if (typeof value !== 'string') {
+    throw invalidApiKeyError;
+  }
 }
 
 function validateOpts(options) {
@@ -19,7 +19,9 @@ function validateBody(body) {
 
   const isValid =
     body && (isJSONString(body) || isJSONObject(body) || isBuffer(body));
-  assert(isValid, invalidBodyError);
+  if (!isValid) {
+    throw invalidBodyError;
+  }
 }
 
 function isBuffer(body) {
@@ -37,7 +39,9 @@ function isJSONString(body) {
 
 function isJSONObject(body) {
   try {
-    assert.strictEqual(typeof body, 'object');
+    if (typeof body !== 'object' || Array.isArray(body) || body === null) {
+      return false;
+    }
   } catch (e) {
     return false;
   }
