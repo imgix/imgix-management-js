@@ -24,8 +24,14 @@ describe('Validators', () => {
   context('validateBody', () => {
     let body;
 
-    it('throws an error if the request body is neither type JSON nor Buffer', () => {
+    it('throws an error if the request body is null or undefined', () => {
       body = null;
+      assert.throws(() => validators.validateBody(body), Error);
+      body = undefined;
+      assert.throws(() => validators.validateBody(body), Error);
+    });
+    it('throws an error if the request body is array', () => {
+      body = [];
       assert.throws(() => validators.validateBody(body), Error);
     });
   });
