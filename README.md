@@ -7,7 +7,7 @@
 `imgix-management-js` is a JavaScript client library for making requests against the [imgix](https://www.imgix.com/) Management API.
 
 [![NPM Version](https://img.shields.io/npm/v/imgix-management-js.svg)](https://www.npmjs.com/package/imgix-management-js)
-[![Build Status](https://travis-ci.org/imgix/imgix-management-js.svg?branch=main)](https://travis-ci.org/imgix/imgix-management-js)
+[![Build Status](https://circleci.com/gh/imgix/imgix-management-js.svg?style=shield)](https://circleci.com/gh/imgix/imgix-management-js)
 [![Monthly Downloads](https://img.shields.io/npm/dm/imgix-management-js.svg)](https://www.npmjs.com/package/imgix-management-js)
 [![Minified Size](https://img.shields.io/bundlephobia/min/imgix-management-js)](https://bundlephobia.com/result?p=imgix-management-js)
 [![License](https://img.shields.io/github/license/imgix/imgix-management-js)](https://github.com/imgix/imgix-management-js/blob/main/LICENSE.md)
