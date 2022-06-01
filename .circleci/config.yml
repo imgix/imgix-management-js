@@ -31,6 +31,13 @@ jobs:
             - run: echo 'export NODE_OPTIONS=--openssl-legacy-provider' >> $BASH_ENV
       - node/install-packages
       - run: npm run test
+  deploy:
+    docker:
+      - image: cimg/node:17.9
+    steps:
+      - checkout
+      - node/install-packages
+      - run: npx semantic-release
 
 workflows:
   test:
@@ -41,3 +48,6 @@ workflows:
               version:
                 - "17.9"
                 - "lts"
+      - deploy:
+          requires:
+            - test
