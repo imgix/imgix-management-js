@@ -33,7 +33,7 @@ jobs:
       - run: npm run test
   deploy:
     docker:
-      - image: cimg/node:17.9
+      - image: cimg/node:18.9
     steps:
       - checkout
       - node/install-packages
