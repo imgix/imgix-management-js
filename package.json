@@ -30,7 +30,7 @@
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
     "@types/node-fetch": "2.6.1",
-    "chai": "4.3.6",
+    "chai": "4.3.7",
     "conventional-changelog-conventionalcommits": "^5.0.0",
     "mocha": "10.0.0",
     "prettier": "2.6.2",
