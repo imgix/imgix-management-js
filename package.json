@@ -35,7 +35,7 @@
     "mocha": "10.0.0",
     "prettier": "2.6.2",
     "sinon": "14.0.0",
-    "tsd": "0.20.0"
+    "tsd": "0.30.7"
   },
   "release": {
     "branches": [
